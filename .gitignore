@@ -1,0 +1,27 @@
+# Visual Studio
+*.sdf
+*.user
+*.suo
+*.opensdf
+.db
+Debug/
+ipch/
+x64/
+.vs/
+
+#tempfiles
+~$_.*
+
+#codelite
+.clang/
+.codelite/
+Debug/
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
