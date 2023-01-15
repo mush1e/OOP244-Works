@@ -1,0 +1,50 @@
+failed!, this is the correct exectution
+Enter GPA query...
+? @2.2
+Syntax error: ? [Op][value]<ENTER>
+Op: [>,<,~,!]
+value: GPA value
+
+? ~3.7
+[1] 362030: 3.7 (Chazz Busby)
+[2] 234272: 3.7 (Comic Book Guy)
+[3] 231018: 3.7 (Ruth Powers)
+[4] 544294: 3.7 (Sea Captain)
+? ~3.8
+[1] 217994: 3.8 (Selma Bouvier)
+? <2.0
+[1] 877842: 1.6 (Edna Krabappel)
+[2] 695606: 1.6 (Kirk Van Houten)
+[3] 262592: 1.7 (Barney Gumble)
+[4] 584416: 1.7 (Brandine Spuckler)
+[5] 383513: 1.7 (Gil Gunderson)
+[6] 568727: 1.7 (Kent Brockman)
+[7] 434336: 1.7 (Seymour Skinner)
+[8] 677806: 1.7 (Wendell Borton)
+[9] 753102: 1.8 (Bart Simpson)
+[10] 686009: 1.8 (Helen Lovejoy)
+[11] 533451: 1.8 (Judge Roy Snyder)
+[12] 950955: 1.8 (Snake Jailbird)
+[13] 194002: 1.8 (Squeaky-Voiced Teen)
+[14] 134681: 1.8 (Wise Guy)
+[15] 667331: 1.9 (Jessica Lovejoy)
+[16] 394769: 1.9 (Troy McClure)
+? >3.8
+[1] 324543: 3.9 (Abraham Simpson)
+[2] 155387: 3.9 (Baby Gerald)
+[3] 242653: 3.9 (Bernice Hibbert)
+[4] 829982: 3.9 (Dolph Starbeam)
+[5] 470546: 4.0 (Agnes Skinner)
+[6] 290816: 4.0 (Apu Nahasapeemapetilon)
+[7] 736389: 4.0 (Disco Stu)
+[8] 901832: 4.0 (Krusty The Clown)
+[9] 570423: 4.0 (Lindsey Naegle)
+[10] 249669: 4.0 (Ling Bouvier)
+? ~3.9
+[1] 324543: 3.9 (Abraham Simpson)
+[2] 155387: 3.9 (Baby Gerald)
+[3] 242653: 3.9 (Bernice Hibbert)
+[4] 829982: 3.9 (Dolph Starbeam)
+? !
+Exit the program? (Y)es/(N)o: y
+Goodbye!
