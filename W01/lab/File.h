@@ -3,7 +3,6 @@
 #include <cstdio>
 namespace sdds {
 
-    FILE* fptr;
     bool openFile(const char filename[]);
     void closeFile();
     bool readTitle(char title[]);
@@ -12,6 +11,6 @@ namespace sdds {
     bool readDuration(int* duration);
     bool readGenres(char genres[][11]);
     bool readConsumerRating(float* rating);
-    
+
 }
 #endif

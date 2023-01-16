@@ -11,10 +11,8 @@ namespace sdds {
         char m_genres[10][11];
         float m_consumerRating;
     };
-    Movie movies[50];
     bool loadMovies();
-    // bool hasGenre(const Movie* mvp, const char genre[]);
-    // void displayMovie(const Movie* mvp);
     void displayMoviesWithGenre(const char genre[]);
+
 }
 #endif
