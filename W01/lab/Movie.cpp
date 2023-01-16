@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "Movie.h"
 
 using namespace std;
