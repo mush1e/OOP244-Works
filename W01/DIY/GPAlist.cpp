@@ -16,6 +16,12 @@ namespace sdds {
             for(int j = 0; j < length - i - 1; j++) 
                 if(gpaList[j].gpa > gpaList[j+1].gpa)
                     swap(gpaList[j], gpaList[j+1]);
+
+        for(int i = 0; i < length - 1; i++) 
+            for(int j = 0; j < length - i - 1; j++) 
+                if(gpaList[j].gpa == gpaList[j+1].gpa && 
+                   gpaList[j].name > gpaList[j+1].name)
+                        swap(gpaList[j], gpaList[j+1]);
     }
 
     bool gpaQuery(const char* filename) {
