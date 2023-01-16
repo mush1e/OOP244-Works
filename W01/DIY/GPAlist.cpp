@@ -11,13 +11,13 @@ namespace sdds {
     FILE* fptr;
     GPA* gpaList;
 
-    void sort(int length) {
-        for(int i = 0; i < length - 1; i++) {
-            for(int j = 0; j < length - i - 1; j++) {
-                if(gpaList[j].gpa < gpaList[j+1].gpa)
-                    swap(gpaList[j], gpaList[j+1]);
-            }
-        }
+    void sortGPA(int length) {
+        for(int i = 0; i < length - 1; i++) 
+            for(int j = 0; j < length - i - 1; j++) 
+                if(   gpaList[j].gpa  >  gpaList[j+1].gpa 
+                   || (gpaList[j].gpa == gpaList[j+1].gpa 
+                   && gpaList[j].name < gpaList[j+1].name))
+                        swap(gpaList[j], gpaList[j+1]);
     }
 
     bool gpaQuery(const char* filename) {
@@ -25,6 +25,9 @@ namespace sdds {
         if(fptr) {
             gpaList = readRecords(fptr);
             int length  = recordLength();
+            sortGPA(length);
+            for(int i = 0; i < length; i++)
+                cout << gpaList[i].gpa << " " << gpaList[i].name << endl;
             return true;
         }
         else 

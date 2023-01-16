@@ -8,8 +8,8 @@ namespace sdds {
     int length;
 
     GPA* readRecords(FILE* fptr) {
-        GPA gpaList[100];
-        
+        static GPA gpaList[100];
+
         for(length = 0
            ;fscanf(fptr, "%[^,],%d,%lf\n",   gpaList[length].name, 
                                             &gpaList[length].stno, 
