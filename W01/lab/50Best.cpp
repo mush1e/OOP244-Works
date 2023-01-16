@@ -3,6 +3,9 @@
 using namespace std;
 using namespace sdds;
 
+void flushkeys();
+bool yes();
+
 int main() {
    bool done = false;
    char genre[128];

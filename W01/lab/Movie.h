@@ -1,6 +1,7 @@
-#ifndef MOVIE_H
-#define MOVIE_H
+#ifndef SDDS_MOVIE_H // replace NAMESPACE and HEADERFILENAME with relevant names
+#define SDDS_MOVIE_H
 
+#include "File.h"
 namespace sdds {
     struct Movie {
         char m_title[128];
@@ -10,11 +11,8 @@ namespace sdds {
         char m_genres[10][11];
         float m_consumerRating;
     };
+    Movie movies[50];
+    bool loadMovies();
+    void displayMoviesWithGenre(const char genre[]);
 }
-
-bool loadMovies();
-bool hasGenre(const Movie* mvp, const char genre[]);
-void displayMovie(const Movie* mvp);
-void displayMoviesWithGenre(const char genre[]);
-
 #endif
