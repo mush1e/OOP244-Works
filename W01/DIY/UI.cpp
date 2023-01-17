@@ -25,34 +25,28 @@ namespace sdds {
 
         cout.precision(1);
 
-        for(int i = 0; i < length; i++) {
+        for(int i = 0, count = 0; i < length; i++) {
             switch(op) {
                 case '<':
                     if(gpa[i].gpa < value)
-                        cout << gpa[i].stno << ": " <<
-                             fixed << gpa[i].gpa  << " ("  
-                             << gpa[i].name << ")" << endl;
+                        cout << "[" << ++count << "]" << gpa[i].stno 
+                             << ": " << fixed << gpa[i].gpa 
+                             << " (" << gpa[i].name << ")" << endl;
                     break;
 
                 case '>':
                     if(gpa[i].gpa > value)
-                        cout << gpa[i].stno << ": "  <<
-                             fixed << gpa[i].gpa  << " ("  
-                             << gpa[i].name << ")" << endl;
+                        cout << "[" << ++count << "]" << gpa[i].stno 
+                             << ": " << fixed << gpa[i].gpa 
+                             << " (" << gpa[i].name << ")" << endl;
                     break;
 
                 case '~':
                     if(gpa[i].gpa > value-0.05 && gpa[i].gpa < value+0.05)
-                        cout << gpa[i].stno << ": " <<
-                             fixed << gpa[i].gpa  << " ("  
-                             << gpa[i].name << ")" << endl;
+                        cout << "[" << ++count << "] " << gpa[i].stno 
+                             << ": " << fixed << gpa[i].gpa 
+                             << " (" << gpa[i].name << ")" << endl;
                     break;
-                
-                default:
-                    cout << "Exit the program? (Y)es/(N)o: ";
-                    cin >> quitChar;
-                    if (quitChar == 'y')
-                        returnValue = 0;
             }
         }
         return returnValue;
