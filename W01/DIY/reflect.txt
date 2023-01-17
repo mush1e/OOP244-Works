@@ -1,0 +1,20 @@
+/*
+*****************************************************************************
+                              Reflect.txt
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 17 Jan 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+This assignment did not have a large learning curve, since it was majorly
+based on topics covered in IPC144 last semester. It was a good refresher for modules,
+File handling and sorting in my opinion! The one observation I made is there isnt need
+to handle too many cases based on the tests provided. For example I dont have to handle a 
+case where a double of precision 2 is entered for the GPA. I used strings and split it to 
+parse my input I don't know if theres a better way to do this but this is what I thought of
+ right away. I havent written code in c++ before so encountering namespaces was interesting. 
+ I love how I dont have to worry about the names I declare conflicting with other declarations,
+ so I can pick the names that make the most sense! I'm excited to get into more c++! 
