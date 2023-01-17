@@ -28,14 +28,14 @@ namespace sdds {
             switch(op) {
                 case '<':
                     if(gpa[i].gpa < value)
-                        cout << "[" << ++count << "]" << gpa[i].stno 
+                        cout << "[" << ++count << "] " << gpa[i].stno 
                              << ": " << fixed << gpa[i].gpa 
                              << " (" << gpa[i].name << ")" << endl;
                     break;
 
                 case '>':
                     if(gpa[i].gpa > value)
-                        cout << "[" << ++count << "]" << gpa[i].stno 
+                        cout << "[" << ++count << "] " << gpa[i].stno 
                              << ": " << fixed << gpa[i].gpa 
                              << " (" << gpa[i].name << ")" << endl;
                     break;
