@@ -41,10 +41,13 @@ namespace sdds {
             int length  = recordLength();
             sortGPA(length);
             promptUser(gpaList);
+            fclose(fptr);
             return true;
         }
-        else 
+        else {
+            fclose(fptr);
             return false;
+        }
     }
 }
 
