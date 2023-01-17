@@ -45,7 +45,6 @@ namespace sdds {
             return true;
         }
         else {
-            fclose(fptr);
             return false;
         }
     }
