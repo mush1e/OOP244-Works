@@ -19,7 +19,6 @@ namespace sdds {
     double value;
 
     int displayOutput(GPA* gpa) {
-        char quitChar;
         int length = recordLength(),
             returnValue = 1;
 
