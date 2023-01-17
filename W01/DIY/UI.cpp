@@ -50,15 +50,31 @@ namespace sdds {
 
     void promptUser(GPA* gpa) {
         int flag = 1;
+        char str[4] = {'\0'};
+        char quitChar;
         cout << "Enter GPA query..." << endl;
+        
         while(flag) {
+
             cout << "? ";
-            cin >> op >> value;
-            if(op != '>' && op != '<' && op != '~' && op != '!') {
+            cin >> str;
+            op = str[0];
+
+            if(op == '!') {
+                cout << "Exit the program? (Y)es/(N)o: ";
+                cin >> quitChar;
+                flag = quitChar == 'y'  ?  0 : 1;
+                cout << flag << endl;
+                continue;
+            }
+
+            else if(op != '>' && op != '<' && op != '~') {
                 cout << "Syntax error: ? [Op][value]<ENTER>" << endl 
                      << "Op: [>,<,~,!]" << endl;
                 continue;
             }
+
+            value = ((int)(str[1])-48) + 0.1*((int)(str[3])-48);
             flag = displayOutput(gpa);
         }
     }
