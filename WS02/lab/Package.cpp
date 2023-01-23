@@ -16,13 +16,14 @@ namespace sdds {
         if (openFile_r(filename_r)) {
 
             // Add [1]: Set the noOfTraces to the number of records found in the file.
-            
+            no_of_traces = noOfTraces();
                                    
             // Add [2]: Dynamically allocate an array of Customers into the global Customers' pointer (users) with the size of no_of_traces.
-            
+            users = new Customers[no_of_traces];
 
             // Add [3]: Load the Customers' records from the file into the dynamically created array (use a loop).
-
+            for (int i = 0; i < no_of_traces; i++)
+                fscanf();
            
 
             // Add [4]: If th number of the records does not match the number of read ones, print an error message
