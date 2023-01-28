@@ -23,25 +23,23 @@ namespace sdds {
 
     // To Do: read functions (4 overloaded read functions)
     
-    /*   
 
-    int read(...............) {
-        return .............; 
+    int read(char* package_name) {
+        return fscanf(fp, "%60[^\n]\n", package_name); 
     }
 
-    int read(...............) {
-        return .............;
+    int read(int &user_time) {
+        return fscanf(fp, "%d,", &user_time);
     }
 
-    int read(..............) {
-        return .............;
+    int read(double &time_in_hours) {
+        return fscanf(fp, "%lf,", &time_in_hours);
     }
 
-    int read(..............) {
-        return ............; 
+    int read(char &day_of_week) {
+        return fscanf(fp, "%[^ \t\n\r\v\f,]%*c", &day_of_week); 
     }
 
-    */
 
     void closefile() { // Fully provided
         if (fp) fclose(fp);

@@ -22,22 +22,19 @@ namespace sdds {
             users = new Customers[no_of_traces];
 
             // Add [3]: Load the Customers' records from the file into the dynamically created array (use a loop).
-            for (int i = 0; i < no_of_traces; i++)
-                fscanf();
+            for (i = 0; i < no_of_traces; i++)
+                loadTraces(users[i]);
            
 
             // Add [4]: If th number of the records does not match the number of read ones, print an error message
-            if (...................) {
+            if (no_of_traces != i) {
                 cout << "Error reading the records, Check the data file "<< endl;
             }
-            else {
-             
-            // Add [5]: set  check to true 
-                
-            }
+            else 
+                check = true;
 
             // Add [6]: close the file; call closefile() function
-
+            closefile();
         }
         else {
             cout << "Could not open the"<< filename_r <<" data file"<< endl;
@@ -60,15 +57,14 @@ namespace sdds {
             && read(user_info.Fctime) && read(read_Package_name)) { // if reading of data
 
            // Add [1]: allocate memory to the size of the Package_name + 1, keep its address in the name of the customers reference (user_info.Package_Name)
-
-            
+           user_info.Package_Name = new char[strlen(read_Package_name) + 1];
 
            // Add [2]:  copy the name into the newly allocated memory, use provided strCpy function
-            
-
+            strcpy(user_info.Package_Name, read_Package_name);
 
            // Add [3]: set  check to true if the previous process is successfully completed
-                        
+           if(user_info.Package_Name != nullptr)
+            check = true;                         
         }
         return check; 
     }
@@ -90,12 +86,23 @@ namespace sdds {
 
 
     // ADD [1]: implement the display function based on the following condition: (timeinhours > 1.0 and dayofweek == 'F') 
-
+    void display() {
+        for(int i = 0; i < no_of_traces; i++)
+            if(users[i].dayofweek == 'F' && users[i].timeinhours > 1)
+                cout << users[i].user_id << "," << users[i].timeinhours << ","
+                    << users[i].Fctime << "," << users[i].Fwifitime << "," 
+                    << users[i].Package_Name << endl;
+    }
 
          
     
     // ADD [2]: implement the deallocateMemory function  
-
+    void deallocateMemory() {
+        for(int i = 0; i < no_of_traces; i++)
+            delete[] users[i].Package_Name;
+        delete[] users;
+        users = nullptr;
+    }
         
 
 }
