@@ -1,3 +1,13 @@
+/*
+*****************************************************************************
+                              Package.cpp
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 28 Jan 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
@@ -24,7 +34,6 @@ namespace sdds {
             // Add [3]: Load the Customers' records from the file into the dynamically created array (use a loop).
             for (i = 0; i < no_of_traces; i++)
                 loadTraces(users[i]);
-           
 
             // Add [4]: If th number of the records does not match the number of read ones, print an error message
             if (no_of_traces != i) {
@@ -63,7 +72,7 @@ namespace sdds {
             strcpy(user_info.Package_Name, read_Package_name);
 
            // Add [3]: set  check to true if the previous process is successfully completed
-           if(user_info.Package_Name != nullptr)
+           if(user_info.Package_Name)
             check = true;                         
         }
         return check; 
