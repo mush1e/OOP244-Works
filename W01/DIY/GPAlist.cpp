@@ -35,6 +35,7 @@ namespace sdds {
     }
 
     bool gpaQuery(const char* filename) {
+        bool retVal = true;
         fptr = fopen(filename, "r");
         if(fptr) {
             gpaList     = readRecords(fptr);
@@ -42,11 +43,11 @@ namespace sdds {
             sortGPA(length);
             promptUser(gpaList);
             fclose(fptr);
-            return true;
         }
         else {
-            return false;
+            retVal = false;
         }
+        return retVal;
     }
 }
 
