@@ -32,7 +32,7 @@ int main() {
        "sheetut\n1\n0\n3\ny",
        "<ENTER>"
     };
-    int i{};
+    int i = 0;
 
     Customers c_rec;
     EmptyRecord(c_rec);

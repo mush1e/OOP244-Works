@@ -16,16 +16,13 @@ namespace sdds {
         int noOfRecords;
     };
     
-       
     void read(char* str, int len);
-   
-    // to be completed
-
-
-
-
-
-              
+    bool read(Customers& rec);
+    void EmptyRecord(Customers customer);
+    void EmptyRecord(CustomersRecord customerRecord);
+    void addCustomer(CustomersRecord& t_rec, const Customers& c_rec);
+    void display(const Customers& c_rec);
+    void display(const CustomersRecord& t_rec);        
 }
 
 #endif 
