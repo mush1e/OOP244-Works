@@ -18,7 +18,6 @@ namespace sdds {
 
     void EmptyRecord(CustomersRecord customerRecord) {
         delete[] customerRecord.ptr_rec;
-        customerRecord.ptr_rec = nullptr;
         customerRecord.noOfRecords = 0;
     }
 
@@ -32,29 +31,36 @@ namespace sdds {
     // complete
    bool read(Customers& rec) {
         char inputString[21] = {'\0'};
-        bool returnValue = false;
+        bool returnValue = true;
         cout << "user name: ";
-        if (!cin.getline(inputString, 21)) 
+        read(inputString, 21);
+        if (inputString[0] != '\0') {
             strCpy(rec.user_name, inputString);
+            cout << " Enter likes_count: ";
+            cin >> rec.likes_count;
+            cout << " Enter retweets_count: ";
+            cin >> rec.retweets_count;
+            cout << " Enter replies_count: ";
+            cin >> rec.replies_count;
+            cout << " Enter share videos (y/n): ";
+            cin >> rec.share_videos;
+        }
         else
-            returnValue = true;
+            returnValue = false;
         return returnValue;
    }
 
     void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) {
         int numberOfRecords = t_rec.noOfRecords + 1;
-        Customers tempRecords[numberOfRecords];
+        Customers *tempRecords = new Customers[numberOfRecords];
 
         for(int i = 0; i < numberOfRecords - 1; i++)
             tempRecords[i] = t_rec.ptr_rec[i];
 
         sdds::EmptyRecord(t_rec);
         
-        t_rec.ptr_rec = new Customers[numberOfRecords];
+        t_rec.ptr_rec = tempRecords;
         t_rec.noOfRecords = numberOfRecords;
-
-        for(int i = 0; i < numberOfRecords - 1; i++)
-            t_rec.ptr_rec[i] = tempRecords[i];
 
         t_rec.ptr_rec[numberOfRecords-1] = c_rec;
     }
