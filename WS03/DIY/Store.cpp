@@ -34,6 +34,7 @@ namespace sdds {
     }
 
     void Store::display() const {
+        int i;
         cout << left << setfill('*') << setw(60) 
             << "" << endl
             << m_sName << endl
@@ -48,7 +49,7 @@ namespace sdds {
             << setw(10) << "Sale"
             << endl;
         
-        for(int i = 0; i < m_addToys; i++) {
+        for(i = 0; i < m_addToys; i++) {
             cout << "Toy[" << i + 1 << "] :";
             m_toy[i].display();
             cout << endl;
