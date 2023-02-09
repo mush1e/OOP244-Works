@@ -1,0 +1,18 @@
+/***********************************************************************
+                 Reflect.txt
+ Name: Mustafa Siddiqui
+ Email: msiddiqui48@myseneca.ca
+ Student Id: 117424225
+ Date: 02/8/23
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***************************************************************************/
+
+The set of assignments for this week were fairly straight-forward. The implementation was very simplistic and 
+didnt take too much time. It was a good refresher for Access Modifiers and the syntax to define methods in C++.
+The main difficulty I faced was the wording of the assignment. Alot of my peers agree that the assignment was very vaguely 
+worded and difficult to parse. It would also have been useful to include some aspect of Dynamically allocating memory 
+in this assignment since it would have served as a good refresher to last weeks work. Also I was excited to work with 
+constructors and destructors dynamically allocating and deallocating memory upon inception and deletion of instances of
+our classes. Also this assignment felt alot more guided (kinda like an IPC assignment), We didnt really have to think of a solution for
+ourselves. Other than that looking forward to the upcoming assignments.
