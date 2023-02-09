@@ -16,7 +16,8 @@ I have done all the coding by myself and only copied the code that my professor 
 using namespace std;
 
 namespace sdds {
-
+    bool m_Validity = false;
+     
     int Toys::getSKU() const {
         return m_sku;
     }

@@ -20,7 +20,6 @@ namespace sdds {
         double m_price;
         int m_age;
         bool m_onSale;
-        bool m_Validity;
 
         public:
             int getSKU() const;
