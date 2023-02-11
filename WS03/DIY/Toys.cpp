@@ -54,12 +54,10 @@ namespace sdds {
                 << m_sku << setw(6) 
                 << m_age << setw(12)
                 << fixed << setprecision(2) << m_price;
-                if (m_onSale)
-                {
+                if (m_onSale) {
                     cout << right << setw(11) << "On Sale ";
                 }
-                else if (!m_onSale)
-                {
+                else if (!m_onSale) {
                     cout << setw(8) << " ";
                 }
         }
