@@ -11,7 +11,25 @@ namespace sdds {
 
 	//class Department does here
 	
-	
+	class Department {
+        char* m_name;
+        Project* m_projects;
+        int m_noProjects;
+        double m_budget = 15345.99;
+        
+        public:
+            void updateName(const char* newname);
+            void updateBudget(double change);
+            bool addProject(Project& newproject);
+            void createDepartment(const char* newname, Project& newproject, double change);
+            Project* fetchProjects() const;
+            int fetchNumProjects() const;
+            double fetchBudget() const;
+            char* fetchName() const;
+            double totalexpenses();
+            double remainingBudget();
+            void clearDepartment();
+    };
 	
 	
 	
