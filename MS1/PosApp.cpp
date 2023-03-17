@@ -29,8 +29,9 @@ namespace sdds {
     }
 
     void PosApp::validateInput(int& userSelection) {
-        do {
-            cin >> userSelection;
+        bool flag = true;
+        cin >> userSelection;
+        while(flag) {
             if(cin.fail()) {
                 cin.clear();
                 cin.ignore(1000, '\n');
@@ -38,7 +39,8 @@ namespace sdds {
             }
             else if (userSelection > 6 || userSelection < 0)
                 cout << "[0<=value<=5], retry: > ";
-        } while(cin.fail() || userSelection > 5 || userSelection < 0);
+            cin >> userSelection;
+        }
     }
 
     ostream& PosApp::loadRecs(ostream& ostr) {
