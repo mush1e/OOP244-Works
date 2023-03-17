@@ -39,6 +39,9 @@ namespace sdds {
             }
             else if (userSelection > 6 || userSelection < 0)
                 cout << "[0<=value<=5], retry: > ";
+            else
+                flag = false;
+                
             cin >> userSelection;
         }
     }
