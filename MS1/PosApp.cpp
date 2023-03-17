@@ -40,7 +40,7 @@ namespace sdds {
                 cout << "Invalid Integer, try again: ";
             }
             else if (userSelection > 5 || userSelection < 0)
-                cout << "[0<=userSelection<=5], retry: > ";
+                cout << "[0<=value<=5], retry: > ";
             else
                 flag = false;
         }
