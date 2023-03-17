@@ -36,7 +36,8 @@ namespace sdds {
                 cin.ignore(1000, '\n');
                 cout << "Invalid Integer, try again: ";
             }
-            (userSelection > 6 || userSelection < 0) && cout << "[0<=value<=5], retry: > ";
+            else if (userSelection > 6 || userSelection < 0)
+                cout << "[0<=value<=5], retry: > ";
         } while(cin.fail() || userSelection > 5 || userSelection < 0);
     }
 
