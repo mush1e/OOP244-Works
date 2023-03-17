@@ -30,19 +30,19 @@ namespace sdds {
 
     void PosApp::validateInput(int& userSelection) {
         bool flag = true;
-        cin >> userSelection;
-        while(flag) {
-            if(cin.fail()) {
+        while (flag)
+        {
+            cin >> userSelection;
+            if (cin.fail())
+            {
                 cin.clear();
-                cin.ignore(1000, '\n');
+                cin.ignore(1000,'\n');
                 cout << "Invalid Integer, try again: ";
             }
-            else if (userSelection > 6 || userSelection < 0)
-                cout << "[0<=value<=5], retry: > ";
+            else if (userSelection > 5 || userSelection < 0)
+                cout << "[0<=userSelection<=5], retry: > ";
             else
                 flag = false;
-                
-            cin >> userSelection;
         }
     }
 
