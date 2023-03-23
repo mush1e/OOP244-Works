@@ -16,6 +16,7 @@ that my professor provided to complete my project milestones.
 -----------------------------------------------------------
 */
 #include <iostream>
+#include <iomanip>
 #include "Date.h"
 #include "Error.h"
 #include "POS.h"
@@ -130,9 +131,10 @@ namespace sdds {
     }
 
     ostream& Date::write(ostream& ostr) const{
+        ostr << setw(2) << setfill('0');
         if (this->errMsg) 
             if (m_dateOnly) 
-                ostr << error() << "(" << m_year << "/" << m_month << "/" << m_day << ")";
+                ostr  << error() << "(" << m_year << "/" << m_month << "/" << m_day << ")";
             else 
                 ostr << error() << "(" << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_min << ")";
         else 
