@@ -87,16 +87,3 @@ namespace sdds {
         return err.getMsg(ostr);
     }
 }
-
-
-
-
-        //     if (m_dateOnly) 
-        //         ostr << setw(2) << setfill('0') << error() << "(" << "/" << setfill('0') << setw(2) << m_month << "/" << setw(2) << m_day << ")";
-        //     else 
-        //         ostr << setw(2) << setfill('0') << error() << "(" << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_min << ")";
-        // else 
-        //     if (m_dateOnly) 
-        //         ostr << setw(2) << setfill('0') << m_year << "/" << m_month << "/" << m_day;
-        //     else 
-        //         ostr << setw(2) << setfill('0') << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_min;
