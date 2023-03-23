@@ -1,3 +1,20 @@
+/*
+Final Project Milestone 2
+Module: Error
+Filename: Date.h
+Version 1.0
+Author    Mustafa Siddiqui
+Student ID: 117434225
+Email: msiddiqui48@myseneca.ca
+Revision History
+-----------------------------------------------------------
+Date        Reason
+2023/03/20  Preliminary release
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------
+*/
 #ifndef SDDS_DATE_H
 #define SDDS_DATE_H
 #include <iostream>
@@ -15,18 +32,24 @@ namespace sdds {
         uShort m_hour{};
         uShort m_min{};
         bool m_dateOnly;
-        Error errMsg{};
+        Error errMsg;
 
         bool validateDate();
         void clearDate();
 
         public:
             Date();
+
+            Date(uShort year, 
+                 uShort month, 
+                 uShort day);
+
             Date(uShort year, 
                  uShort month, 
                  uShort day,
-                 uShort hour = 250,
-                 uShort min = 610);
+                 uShort hour,
+                 uShort min = 0);
+
             ~Date();
 
         Error error() const;

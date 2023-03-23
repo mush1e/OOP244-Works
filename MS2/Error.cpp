@@ -1,3 +1,20 @@
+/*
+Final Project Milestone 2
+Module: Error
+Filename: Error.cpp
+Version 1.0
+Author    Mustafa Siddiqui
+Student ID: 117434225
+Email: msiddiqui48@myseneca.ca
+Revision History
+-----------------------------------------------------------
+Date        Reason
+2023/03/20  Preliminary release
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------
+*/
 #include <iostream>
 #include <cstring>
 #include "Error.h"
@@ -16,18 +33,22 @@ namespace sdds {
     }
 
     Error::Error(const Error& other) {
-        this != &other ? *this = other: nullptr;
+       if (this != &other) {
+          operator=(other);
+       }
     }
 
     Error::~Error() {
-        delete[] this->m_ErrMsgPtr;
-        this->m_ErrMsgPtr=nullptr;
+       if (*this) {
+          delete[] this->m_ErrMsgPtr;
+          this->m_ErrMsgPtr = nullptr;
+       }
     }
 
     Error& Error::operator=(const Error& other) {
         if(other) {
             clear();
-            this->m_ErrMsgPtr = new char [strlen(other.m_ErrMsgPtr + 1)];
+            this->m_ErrMsgPtr = new char [strlen(other.m_ErrMsgPtr) + 1];
             memcpy(this->m_ErrMsgPtr, other.m_ErrMsgPtr, strlen(other.m_ErrMsgPtr));
             this->m_ErrMsgPtr[strlen(other.m_ErrMsgPtr)] = '\0';
         }
@@ -49,13 +70,19 @@ namespace sdds {
     }
 
     Error& Error::clear() {
-        delete[] this->m_ErrMsgPtr;
-        this->m_ErrMsgPtr = nullptr;
+
+       if (this->m_ErrMsgPtr) {
+          delete[] this->m_ErrMsgPtr;
+          this->m_ErrMsgPtr = nullptr;
+       }
         return *this;
     }
 
     ostream& Error::getMsg(ostream& ostr) const {
-        return ostr << this->m_ErrMsgPtr;
+       if (this->m_ErrMsgPtr) {
+          ostr << this->m_ErrMsgPtr;
+       }
+        return ostr;
     }
     
     ostream& operator<<(ostream& ostr, const Error& err) {

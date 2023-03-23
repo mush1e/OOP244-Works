@@ -1,3 +1,20 @@
+/*
+Final Project Milestone 2
+Module: Error
+Filename: Date.cpp
+Version 1.0
+Author    Mustafa Siddiqui
+Student ID: 117434225
+Email: msiddiqui48@myseneca.ca
+Revision History
+-----------------------------------------------------------
+Date        Reason
+2023/03/20  Preliminary release
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------
+*/
 #include <iostream>
 #include "Date.h"
 #include "Error.h"
@@ -22,9 +39,18 @@ namespace sdds {
         this->m_day = day;
         this->m_hour = hour;
         this->m_min = min;
-        this->m_dateOnly = (hour == 250 || min == 610); 
+        this->m_dateOnly = false; 
         validateDate();
     }
+
+    Date::Date(uShort year, uShort month, uShort day) {
+        this->m_year = year;
+        this->m_month = month;
+        this->m_day = day;
+        this->m_dateOnly = true; 
+        validateDate();
+    }
+
 
     Date::~Date() {}
 
