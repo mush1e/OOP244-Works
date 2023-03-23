@@ -39,10 +39,8 @@ namespace sdds {
     }
 
     Error::~Error() {
-       if (*this) {
           delete[] this->m_ErrMsgPtr;
           this->m_ErrMsgPtr = nullptr;
-       }
     }
 
     Error& Error::operator=(const Error& other) {
