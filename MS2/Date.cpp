@@ -50,6 +50,8 @@ namespace sdds {
         this->m_year = year;
         this->m_month = month;
         this->m_day = day;
+        this->m_hour = -1;
+        this->m_min = -1;
         this->m_dateOnly = true; 
         validateDate();
     }
