@@ -14,7 +14,9 @@ Date        Reason
 I have done all the coding by myself and only copied the code
 that my professor provided to complete my project milestones.
 -----------------------------------------------------------
-*/
+*/ 
+
+
 #include <iostream>
 #include <iomanip>
 #include "Date.h"
@@ -131,15 +133,14 @@ namespace sdds {
     }
 
     ostream& Date::write(ostream& ostr) const{
-        ostr << setw(2) << setfill('0');
         if (this->errMsg) {
-            ostr << errMsg << "(" << m_year<< "/" << setfill('0') << setw(2) << m_month << "/" << setw(2) << m_day ;
+            ostr << errMsg << "(" << m_year<< "/" << setfill('0') << setw(2) << m_month << "/" << setfill('0') << setw(2) << m_day ;
             if(m_dateOnly)    ostr << ")";
-            else              ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setw(2) << m_min << ")";
+            else              ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0') << setw(2) << m_min << ")";
         }
         else {
-            ostr << m_year<< "/" << setfill('0') << setw(2) << m_month << "/" << setw(2) << m_day;
-            if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setw(2) << m_min;
+            ostr << m_year << "/" << setfill('0') << setw(2) << m_month << "/" << setfill('0')  << setw(2) << m_day;
+            if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min;
         }
         return ostr;
     }
