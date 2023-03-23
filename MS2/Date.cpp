@@ -33,7 +33,7 @@ namespace sdds {
                       this->m_dateOnly);
     }
 
-    Date::Date(uShort year, uShort month, uShort day, uShort hour , uShort min) {
+    Date::Date(int year, int month, int day, int hour , int min) {
         this->m_year = year;
         this->m_month = month;
         this->m_day = day;
@@ -43,7 +43,7 @@ namespace sdds {
         validateDate();
     }
 
-    Date::Date(uShort year, uShort month, uShort day) {
+    Date::Date(int year, int month, int day) {
         this->m_year = year;
         this->m_month = month;
         this->m_day = day;
@@ -109,7 +109,7 @@ namespace sdds {
     } 
 
     istream& Date::read(istream& istr) {
-        uShort year, month, day, hour, min;
+        int year, month, day, hour, min;
         char delim;
         errMsg.clear();
         if(!(istr>>year))                       errMsg = "Cannot read year entry";
@@ -130,22 +130,16 @@ namespace sdds {
     }
 
     ostream& Date::write(ostream& ostr) const{
-        if (error()) {
-            if (m_dateOnly) {
+        if (this->errMsg) 
+            if (m_dateOnly) 
                 ostr << error() << "(" << m_year << "/" << m_month << "/" << m_day << ")";
-            }
-            else {
+            else 
                 ostr << error() << "(" << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_min << ")";
-            }
-        }
-        else {
-            if (m_dateOnly) {
+        else 
+            if (m_dateOnly) 
                 ostr << m_year << "/" << m_month << "/" << m_day;
-            }
-            else {
+            else 
                 ostr << m_year << "/" << m_month << "/" << m_day << ", " << m_hour << ":" << m_min;
-            }
-        }
         return ostr;
     }
 

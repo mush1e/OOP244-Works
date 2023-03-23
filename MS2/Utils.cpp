@@ -24,7 +24,7 @@ using namespace std;
 
 
 namespace sdds {
-    void getSystemDate(uShort& year, uShort& mon, uShort& day, uShort& hour, uShort& min, bool dateOnly) {
+    void getSystemDate(int& year, int& mon, int& day, int& hour, int& min, bool dateOnly) {
         time_t t = time(0);
         tm lt = *localtime(&t);
         day = lt.tm_mday;
@@ -38,14 +38,14 @@ namespace sdds {
         }
     }
         
-    uShort uniqueDateValue(uShort year, uShort mon, uShort day, uShort hour, uShort min) {
+    int uniqueDateValue(int year, int mon, int day, int hour, int min) {
         return year * 535680 + mon * 44640 + day * 1440 + hour * 60 + min;
     }
 
-    uShort daysOfMonth(uShort year, uShort month) {
-        uShort days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, -1 };
-        uShort mon = month >= 1 && month <= 12 ? month : 13;
+    int daysOfMonth(int year, int month) {
+        int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, -1 };
+        int mon = month >= 1 && month <= 12 ? month : 13;
         mon--;
-        return days[mon] + uShort((mon == 1) * ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
+        return days[mon] + int((mon == 1) * ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
     }
 }

@@ -20,17 +20,17 @@ that my professor provided to complete my project milestones.
 #include <iostream>
 #include "Error.h"
 
-using uShort = short;
+// using int = short;
 
 namespace sdds {
 
     class Date {
 
-        uShort m_year{};
-        uShort m_month{};
-        uShort m_day{};
-        uShort m_hour{};
-        uShort m_min{};
+        int m_year{};
+        int m_month{};
+        int m_day{};
+        int m_hour{};
+        int m_min{};
         bool m_dateOnly;
         Error errMsg;
 
@@ -40,15 +40,15 @@ namespace sdds {
         public:
             Date();
 
-            Date(uShort year, 
-                 uShort month, 
-                 uShort day);
+            Date(int year, 
+                 int month, 
+                 int day);
 
-            Date(uShort year, 
-                 uShort month, 
-                 uShort day,
-                 uShort hour,
-                 uShort min = 0);
+            Date(int year, 
+                 int month, 
+                 int day,
+                 int hour,
+                 int min = 0);
 
             ~Date();
 
