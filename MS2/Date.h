@@ -31,7 +31,7 @@ namespace sdds {
         int m_day{};
         int m_hour{};
         int m_min{};
-        bool m_dateOnly;
+        bool m_dateOnly{};
         Error errMsg;
 
         bool validateDate();
