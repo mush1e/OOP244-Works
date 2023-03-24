@@ -114,8 +114,8 @@ namespace sdds {
     } 
 
     istream& Date::read(istream& istr) {
-        Error err;
         int year{}, month{}, day{}, hour{}, min{};
+        Error tempErr;
         char delim;
         errMsg.clear();
         if(!(istr>>year))                       errMsg = "Cannot read year entry";
@@ -128,13 +128,14 @@ namespace sdds {
             if(!errMsg && !(istr>>hour))        errMsg = "Cannot read hour entry";
             istr >> delim;
             if(!errMsg && !(istr>>min))         errMsg = "Cannot read minute entry";
-            err = errMsg;
+            tempErr = errMsg;
             *this = Date(year, month, day, hour, min);
         }
-        else
-            err = errMsg;
+        else {
+            tempErr = errMsg;
             *this = Date(year, month, day);
-            errMsg = err;
+        }
+            errMsg = tempErr;
         return istr;
     }
 
