@@ -114,6 +114,7 @@ namespace sdds {
     } 
 
     istream& Date::read(istream& istr) {
+        Error err;
         int year{}, month{}, day{}, hour{}, min{};
         char delim;
         errMsg.clear();
@@ -131,6 +132,7 @@ namespace sdds {
         }
         else
             *this = Date(year, month, day);
+            errMsg = err;
         return istr;
     }
 
