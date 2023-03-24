@@ -68,7 +68,7 @@ namespace sdds {
             (this->m_month > 12) ? errMsg = "Invalid Month" : errMsg;
         
         if(!errMsg)
-            (this->m_month > daysOfMonth(this->m_year, this->m_month)) ? errMsg = "Invalid Day" : errMsg;
+            (this->m_day > daysOfMonth(this->m_year, this->m_month)) ? errMsg = "Invalid Day" : errMsg;
 
         if(!errMsg && !this->m_dateOnly) {
             if(this->m_hour > 23)        errMsg = "Invalid Hour";
@@ -137,11 +137,15 @@ namespace sdds {
     ostream& Date::write(ostream& ostr) const{
         if (this->errMsg) {
             ostr << errMsg << "(" << m_year<< "/" << setfill('0') << setw(2) << m_month << "/" << setfill('0') << setw(2) << m_day ;
+            
             if(m_dateOnly)    ostr << ")";
+            
             else              ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0') << setw(2) << m_min << ")";
         }
         else {
+            
             ostr << m_year << "/" << setfill('0') << setw(2) << m_month << "/" << setfill('0')  << setw(2) << m_day;
+            
             if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min;
         }
         return ostr;
