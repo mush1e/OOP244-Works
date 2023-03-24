@@ -128,9 +128,11 @@ namespace sdds {
             if(!errMsg && !(istr>>hour))        errMsg = "Cannot read hour entry";
             istr >> delim;
             if(!errMsg && !(istr>>min))         errMsg = "Cannot read minute entry";
+            err = errMsg;
             *this = Date(year, month, day, hour, min);
         }
         else
+            err = errMsg;
             *this = Date(year, month, day);
             errMsg = err;
         return istr;
