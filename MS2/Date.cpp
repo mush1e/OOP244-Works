@@ -61,7 +61,7 @@ namespace sdds {
 
     bool Date::validateDate() {
         if(!errMsg) 
-            (this->m_year >= MAX_YEAR || this->m_year <= MIN_YEAR) ? 
+            (this->m_year > MAX_YEAR || this->m_year < MIN_YEAR) ? 
                     errMsg = "Invalid Year" :
                      errMsg;
         if(!errMsg)
