@@ -114,7 +114,7 @@ namespace sdds {
     } 
 
     istream& Date::read(istream& istr) {
-        int year, month, day, hour, min;
+        int year, month, day, hour, min = 0;
         char delim;
         errMsg.clear();
         if(!(istr>>year))                       errMsg = "Cannot read year entry";
