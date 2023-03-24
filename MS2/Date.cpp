@@ -72,7 +72,7 @@ namespace sdds {
 
         if(!errMsg && !this->m_dateOnly) {
             if(this->m_hour > 23)        errMsg = "Invalid Hour";
-            else if (this-> m_min > 59)  errMsg = "Invalid Minute";
+            else if (this-> m_min > 59)  errMsg = "Invlid Minute";
         }
         return errMsg;        
     }
