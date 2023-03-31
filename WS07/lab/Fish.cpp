@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Fish.h"
 
 using namespace std;
@@ -27,7 +26,7 @@ namespace sdds {
     Fish& Fish::operator=(const Fish& other) {
         if(this != &other) {
             Pet::operator=(other);
-            this->addCharge(m_create * 3);
+            this->addCharge((m_create + m_base) * 2);
         }
         return *this;
     }

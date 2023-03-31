@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #ifndef SDDS_FISH_H
 #define SDDS_FISH_H
 
@@ -5,6 +6,7 @@
 
 namespace sdds {
     class Fish : public Pet {
+       const double m_base = 1.0;
        const double m_create = 2.0;
        const double m_feed = 0.1;
        const double m_respawn = 0.5;
