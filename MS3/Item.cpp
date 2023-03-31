@@ -50,9 +50,9 @@ namespace sdds {
     int Item::operator+=(const int value) {
         bool error = false;
         
-        this->m_quantity = (this->m_quantity+value) > MAX_STOCK_NUMBER 
-            ? MAX_STOCK_NUMBER, error = true 
-            : this->m_quantity + value;
+        (this->m_quantity+value) > MAX_STOCK_NUMBER 
+            ? this->m_quantity = MAX_STOCK_NUMBER, error = true 
+            : this->m_quantity = this->m_quantity + value;
 
         error ? this->err = ERROR_POS_QTY : err;
 
@@ -62,9 +62,9 @@ namespace sdds {
     int Item::operator-=(const int value) {
         bool error = false;
         
-        this->m_quantity = (this->m_quantity-value) < 0 
-            ? 0, error = true 
-            : this->m_quantity - value;
+        (this->m_quantity-value) < 0 
+            ? this->m_quantity = 0, error = true 
+            : this->m_quantity = this->m_quantity - value;
 
         error ? this->err = ERROR_POS_STOCK : err;
 
@@ -110,7 +110,6 @@ namespace sdds {
 
     ostream& Item::write(ostream& ostr)  const {
         if (this->err)    ostr << this->err;
-
         else 
             switch(this->m_displayType) {
                 case POS_LIST:
@@ -118,7 +117,6 @@ namespace sdds {
                     strlen(this->m_itemName) > 20 
                         ? ostr.write(this->m_itemName, 20) 
                         : ostr << setw(20) << this->m_itemName;
-
                     ostr << "|" << setw(7) << right << fixed 
                          << setprecision(2) << this->m_price << "|"
                          << setw(3) << (this->m_isTaxed ? " X |" : "   |")
@@ -126,16 +124,13 @@ namespace sdds {
                          << setw(10) << fixed << setprecision(2) 
                          << cost() * this->m_quantity << "|";
                     break;
-                
                 case POS_FORM:
                     ostr << "=============v" << endl
                          << setw(13) << left << "Name:" << this->m_itemName << endl
                          << setw(13) << left << "Sku:" << this->m_SKU << endl
                          << setw(13) << left << "Price:" << this->m_price << endl
                          << setw(13) << left << "Price + tax:";
-
                     this->m_isTaxed ? ostr << cost() : ostr << "N/A";
-
                     ostr << endl << "Quantity: " << this->m_quantity << endl
                          << "====================" << endl;
                     break;
@@ -159,7 +154,6 @@ namespace sdds {
                 memcpy(this->m_SKU, buffer, strlen(buffer) + 1);
             }
         }
-
         flag = true;
         cout << "Name" << endl;
         while(flag) {
@@ -177,7 +171,6 @@ namespace sdds {
                 flag = false;
             }
         }
-
         flag = true;
         cout << "Price" << endl;
         while(flag) {
@@ -192,7 +185,6 @@ namespace sdds {
                 flag = false;
             }
         }
-
         flag = true;
         cout << "Taxed?" << endl;
         cout << "(Y)es/(N)o: ";
@@ -208,7 +200,6 @@ namespace sdds {
             }
             else    cout << "Only 'y' and 'n' are acceptable: ";
         }
-
         flag = true;
         cout << "Quantity" << endl;
         while(flag) {
@@ -218,15 +209,23 @@ namespace sdds {
                 flag = false;
             }
             else {
-                cout << "Invalid quantity value" << endl;
+                cout << ERROR_POS_QTY << endl;
                 istr.clear();
                 istr.ignore(10000, '\n');
             }
         }
         return istr;
     }
-    
 
+    ofstream& Item::save(ofstream& ostr) const {
+        return ostr;
+    }
 
+    ifstream& Item::load(ifstream& istr) {
+        return istr;
+    } 
 
+    ostream& Item::bprint(ostream &ostr)  const {
+        return ostr;
+    }
 }

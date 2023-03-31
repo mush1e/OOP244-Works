@@ -29,12 +29,12 @@ namespace sdds {
     const int POS_LIST = 1;
     const int POS_FORM = 2;
 
-    char* ERROR_POS_SKU= "SKU too long";
-    char* ERROR_POS_NAME= "Item name too long";
-    char* ERROR_POS_PRICE= "Invalid price value";
-    char* ERROR_POS_TAX= "Invalid tax status";
-    char* ERROR_POS_QTY= "Invalid quantity value";
-    char* ERROR_POS_STOCK= "Item out of stock";
-    char* ERROR_POS_EMPTY= "Invalid Empty Item";
+    const char* const ERROR_POS_SKU = "SKU too long";
+    const char* const ERROR_POS_NAME = "Item name too long";
+    const char* const ERROR_POS_PRICE = "Invalid price value";
+    const char* const ERROR_POS_TAX = "Invalid tax status";
+    const char* const ERROR_POS_QTY = "Invalid quantity value";
+    const char* const ERROR_POS_STOCK = "Item out of stock";
+    const char* const ERROR_POS_EMPTY = "Invalid Empty Item";
 }
 #endif

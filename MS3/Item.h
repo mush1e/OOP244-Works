@@ -34,7 +34,7 @@ namespace sdds {
 
             Item& clear();
             Item& displayType(int posValue);
-
+            std::ostream& bprint(std::ostream &ostr)  const;
             std::ostream& write(std::ostream& ostr)  const override;
             std::istream&  read(std::istream& istr)        override;
             std::ofstream& save(std::ofstream& ostr) const override;
