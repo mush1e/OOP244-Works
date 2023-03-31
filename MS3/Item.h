@@ -14,18 +14,19 @@ namespace sdds {
         int m_quantity              {};
     
         protected:
-            int displayType         {};
+            int m_displayType     =   0;
             Error err               {};
 
         public:
             Item();
+            ~Item();
             Item(const Item& other);
             Item& operator=(const Item& other);
             bool operator==(const char* name) const;
-            bool operator>(const char* name)  const;
-            Item& operator+=(const int value);
-            Item& operator-=(const int value);
-            operator bool();
+            bool operator>(const Item& other)  const;
+            int operator+=(const int value);
+            int operator-=(const int value);
+            operator bool() const;
 
             virtual char itemType() = 0;
             double cost()  const;
