@@ -1,6 +1,6 @@
+#include <iostream>
 #ifndef SDDS_ERROR_H
 #define SDDS_ERROR_H
-#include <iostream>
 
 namespace sdds {
     class Error {
