@@ -28,17 +28,17 @@ namespace sdds {
             int operator-=(const int value);
             operator bool() const;
 
-            virtual char itemType() = 0;
+            virtual char itemType() const = 0;
             double cost()  const;
             int quantity() const;
 
             Item& clear();
             Item& displayType(int posValue);
 
-            virtual std::ostream& write(std::ostream& ostr)  const override;
-            virtual std::istream&  read(std::istream& istr)        override;
-            virtual std::ofstream& save(std::ofstream& ostr) const override;
-            virtual std::ifstream& load(std::ifstream& istr)       override; 
+            std::ostream& write(std::ostream& ostr)  const override;
+            std::istream&  read(std::istream& istr)        override;
+            std::ofstream& save(std::ofstream& ostr) const override;
+            std::ifstream& load(std::ifstream& istr)       override; 
 
     };
 

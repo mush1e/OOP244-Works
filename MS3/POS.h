@@ -26,8 +26,8 @@ namespace sdds {
     const int MAX_NO_ITEMS = 2000;
     int MAX_NAME_LEN = 40;
 
-    int POS_LIST = 1;
-    int POS_FORM = 2;
+    const int POS_LIST = 1;
+    const int POS_FORM = 2;
 
     char* ERROR_POS_SKU= "SKU too long";
     char* ERROR_POS_NAME= "Item name too long";

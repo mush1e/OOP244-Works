@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "Item.h"
 
 using namespace std;
@@ -106,6 +107,126 @@ namespace sdds {
         this->err.clear();
         return *this;
     }
+
+    ostream& Item::write(ostream& ostr)  const {
+        if (this->err)    ostr << this->err;
+
+        else 
+            switch(this->m_displayType) {
+                case POS_LIST:
+                    ostr << setw(7) << left << this->m_SKU << "|";
+                    strlen(this->m_itemName) > 20 
+                        ? ostr.write(this->m_itemName, 20) 
+                        : ostr << setw(20) << this->m_itemName;
+
+                    ostr << "|" << setw(7) << right << fixed 
+                         << setprecision(2) << this->m_price << "|"
+                         << setw(3) << (this->m_isTaxed ? " X |" : "   |")
+                         << setw(4) << right << this->m_quantity << "|"
+                         << setw(10) << fixed << setprecision(2) 
+                         << cost() * this->m_quantity << "|";
+                    break;
+                
+                case POS_FORM:
+                    ostr << "=============v" << endl
+                         << setw(13) << left << "Name:" << this->m_itemName << endl
+                         << setw(13) << left << "Sku:" << this->m_SKU << endl
+                         << setw(13) << left << "Price:" << this->m_price << endl
+                         << setw(13) << left << "Price + tax:";
+
+                    this->m_isTaxed ? ostr << cost() : ostr << "N/A";
+
+                    ostr << endl << "Quantity: " << this->m_quantity << endl
+                         << "====================" << endl;
+                    break;
+        }
+        return ostr;
+    }
+
+    istream& Item::read(istream& istr)  {
+        bool flag = true;
+        cout << "Sku" << endl;
+        while(flag) {
+            char buffer[MAX_NAME_LEN*2];
+            buffer[0] = '\0';
+            cout << ">";
+            istr.clear();
+            istr.ignore(10000, '\n');
+            istr >> buffer;
+            if (strlen(buffer) > MAX_SKU_LEN)    cout << ERROR_POS_SKU << endl;
+            else {
+                flag = false;
+                memcpy(this->m_SKU, buffer, strlen(buffer) + 1);
+            }
+        }
+
+        flag = true;
+        cout << "Name" << endl;
+        while(flag) {
+            char buffer[MAX_NAME_LEN*2];
+            buffer[0] = '\0';
+            cout << ">";
+            istr.clear();
+            istr.ignore(10000, '\n');
+            istr.getline(buffer, MAX_NAME_LEN + 5);
+            if (strlen(buffer) > MAX_NAME_LEN)    cout << ERROR_POS_NAME << endl;
+            else {
+                delete[] this->m_itemName;
+                this->m_itemName = new char[strlen(buffer) + 1];
+                memcpy(this->m_itemName, buffer, strlen(buffer) + 1);
+                flag = false;
+            }
+        }
+
+        flag = true;
+        cout << "Price" << endl;
+        while(flag) {
+            double price{};
+            cout << ">";
+            istr.clear();
+            istr.ignore(10000, '\n');
+            istr >> price;
+            if(price < 0)    cout << ERROR_POS_PRICE << endl;
+            else {
+                this->m_price = price;
+                flag = false;
+            }
+        }
+
+        flag = true;
+        cout << "Taxed?" << endl;
+        cout << "(Y)es/(N)o: ";
+        while(flag) {
+            char buffer[MAX_NAME_LEN*2];
+            buffer[0] = '\0';
+            istr.clear();
+            istr.ignore(10000, '\n');
+            istr >> buffer;
+            if (strcmp(buffer, "y") == 0 || strcmp(buffer, "n") == 0) {
+                this->m_isTaxed = strcmp(buffer, "y") == 0;
+                flag = false;
+            }
+            else    cout << "Only 'y' and 'n' are acceptable: ";
+        }
+
+        flag = true;
+        cout << "Quantity" << endl;
+        while(flag) {
+            int quantity;
+            if(istr >> quantity && quantity > 0 && quantity < MAX_STOCK_NUMBER) {
+                this->m_quantity = quantity;
+                flag = false;
+            }
+            else {
+                cout << "Invalid quantity value" << endl;
+                istr.clear();
+                istr.ignore(10000, '\n');
+            }
+        }
+        return istr;
+    }
+    
+
 
 
 }
