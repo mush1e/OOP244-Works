@@ -7,6 +7,7 @@ namespace sdds {
     Item::Item() {} // default values already set initially
 
     Item::~Item() {
+        this->clear();
         delete[] this->m_itemName;
         this->m_itemName = nullptr;
     }
@@ -73,5 +74,38 @@ namespace sdds {
         return !err;
     }
 
+    double operator+=(double& value, const Item& ROp) {
+        return value += ROp.cost() * ROp.quantity();
+    }
     
+    Item& Item::displayType(int posValue) {
+
+        (posValue == POS_LIST || posValue == POS_FORM )
+            ? this->m_displayType = posValue 
+            : this->m_displayType;
+
+        return *this;
+    }
+    
+    double Item::cost() const {
+
+        double totalCost {};
+
+        totalCost = this->m_isTaxed 
+            ? this->m_price * (1+TAX) 
+            : this->m_price;
+
+        return totalCost;
+    }
+
+    int Item::quantity() const {
+        return this->m_quantity;
+    }
+
+    Item& Item::clear() {
+        this->err.clear();
+        return *this;
+    }
+
+
 }

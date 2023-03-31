@@ -14,7 +14,7 @@ namespace sdds {
         int m_quantity              {};
     
         protected:
-            int m_displayType     =   0;
+            int m_displayType       {};
             Error err               {};
 
         public:
@@ -42,7 +42,7 @@ namespace sdds {
 
     };
 
-    double& operator+=(double& value, const Item& ROp);
+    double operator+=(double& value, const Item& ROp);
 
 }
 
