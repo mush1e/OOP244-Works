@@ -250,7 +250,7 @@ namespace sdds {
 			!err && strlen(tempName) > MAX_NAME_LEN ? flag = false, err = ERROR_POS_NAME : flag;
 			!err && tempPrice < 0 ? flag = false, err = ERROR_POS_PRICE : flag;
 			!err && tempTaxed != 0 && tempTaxed != 1 ? flag = false, err = ERROR_POS_TAX : flag;
-			!err && tempQuantity < 0 || tempQuantity > MAX_STOCK_NUMBER ? flag = false, err = ERROR_POS_STOCK : flag;
+			(!err && (tempQuantity < 0 || tempQuantity > MAX_STOCK_NUMBER)) ? flag = false, err = ERROR_POS_STOCK : flag;
 		} else    flag = false;
         if(flag) {
             strcpy(this->m_SKU, tempSKU);
