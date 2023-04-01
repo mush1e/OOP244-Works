@@ -22,7 +22,7 @@ namespace sdds {
             ~Item();
             Item(const Item& other);
             Item& operator=(const Item& other);
-            bool operator==(const char* name) const;
+            bool operator==(const char* name)  const;
             bool operator>(const Item& other)  const;
             int operator+=(const int value);
             int operator-=(const int value);
@@ -34,11 +34,11 @@ namespace sdds {
 
             Item& clear();
             Item& displayType(int posValue);
-            std::ostream& bprint(std::ostream &ostr)  const;
-            std::ostream& write(std::ostream& ostr)  const override;
-            std::istream&  read(std::istream& istr)        override;
-            std::ofstream& save(std::ofstream& ostr) const override;
-            std::ifstream& load(std::ifstream& istr)       override; 
+            std::ostream&  bprint(std::ostream &ostr) const;
+            std::ostream&  write(std::ostream& ostr)  const override;
+            std::istream&  read(std::istream& istr)         override;
+            std::ofstream& save(std::ofstream& ostr)  const override;
+            std::ifstream& load(std::ifstream& istr)        override; 
 
     };
 
