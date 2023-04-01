@@ -204,10 +204,8 @@ namespace sdds {
 				? this->m_quantity = tempQuantity, flag = false
 				: flag = true;
 			flag&& cout << ERROR_POS_QTY << endl;
-			cout << "111111";
 			istr.clear();
 			istr.ignore(99, '\n');
-			cout << "111111";
 		}
 		return istr;
 	}
@@ -247,10 +245,29 @@ namespace sdds {
 			!err && tempTaxed != 0 && tempTaxed != 1 ? flag = false, err = ERROR_POS_TAX : flag;
 			!err && tempQuantity < 0 || tempQuantity > MAX_STOCK_NUMBER ? flag = false, err = ERROR_POS_STOCK : flag;
 		} else    flag = false;
+        if(flag) {
+            strcpy(this->m_SKU, tempSKU);
+            if (this->m_itemName != nullptr) {
+                delete[] this->m_itemName;
+                this->m_itemName = nullptr;
+            }
+            this->m_itemName = new char[strlen(tempName) + 1];
+            strcpy(this->m_itemName, tempName);
+            this->m_price = tempPrice;
+            this->m_isTaxed = tempTaxed;
+            this->m_quantity = tempQuantity;
+
+        }
 		return istr;
 	}
 
 	ostream& Item::bprint(ostream& ostr)  const {
-		return ostr;
+        ostr << "| " << left;
+        (strlen(this->m_itemName) > 20) 
+                    ? ostr.write(this->m_itemName, 20)
+					: ostr << setw(20) << this->m_itemName;
+        ostr << "|" << setw(10) << right << fixed << setprecision(2) 
+             << cost() << " |" << " " << (this->m_isTaxed ? "T" : " ") << " |" << endl;
+        return ostr;
 	}
 }
