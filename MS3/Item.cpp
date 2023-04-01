@@ -191,7 +191,7 @@ namespace sdds {
             istr.clear();
 			istr.ignore(99, '\n');
 		}
-		cout << "Taxed" << endl;
+		cout << "Taxed?" << endl;
 		cout << "(Y)es/(N)o: ";
 		flag = true;
 		while (flag) {
