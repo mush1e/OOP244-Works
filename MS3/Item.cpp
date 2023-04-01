@@ -135,8 +135,9 @@ namespace sdds {
 					<< setw(13) << left << "Price:" << this->m_price << endl
 					<< setw(13) << left << "Price + tax:";
 				this->m_isTaxed ? ostr << cost() : ostr << "N/A";
-				ostr << endl << "Quantity: " << this->m_quantity << endl
-					<< "====================" << endl;
+				ostr << endl << setw(13) << left << "Stock Qty:" 
+                     << this->m_quantity << endl
+					 << "====================" << endl;
 				break;
 			}
 		return ostr;
