@@ -140,25 +140,69 @@ namespace sdds {
 
     istream& Item::read(istream& istr)  {
         bool flag = true;
-        char skuBuffer[MAX_SKU_LEN + 1]{};
-        char nameBuffer[MAX_NAME_LEN + 1]{};
+        char skuBuffer[MAX_SKU_LEN * 2]{};
+        char nameBuffer[MAX_NAME_LEN * 2]{};
+        char taxedBuffer[10] {};
         double tempPrice;
-        bool tempTaxed;
         int tempQuantity;
-
         cout << "Sku" << endl;
         while(flag) {
             cout << "> ";
-            istr.getline(skuBuffer, MAX_SKU_LEN + 1, '\n');
-            if (skuBuffer[MAX_SKU_LEN] != '\0')
-                cout << ERROR_POS_SKU << endl; 
-            else {
-                flag = false; 
-                memcpy(this->m_SKU, skuBuffer,  MAX_SKU_LEN + 1);
-            }
-            
+            istr >> skuBuffer;
+            if (strlen(skuBuffer) > MAX_SKU_LEN)    cout << ERROR_POS_SKU << endl; 
+            else    flag = false && strcpy(this->m_SKU, skuBuffer);
+            istr.clear();
+            istr.ignore(99, '\n');
         }
-
+        cout << "Name" << endl;
+        flag = true;
+        while(flag) {
+            cout << "> ";
+            istr.get(nameBuffer, MAX_NAME_LEN * 2, '\n');
+            if (strlen(skuBuffer) > MAX_NAME_LEN)   cout << ERROR_POS_NAME << endl;
+            else {
+                flag = false;
+                delete[] this->m_itemName;
+                this->m_itemName = new char [strlen(skuBuffer) + 1];
+                strcpy(this->m_itemName, nameBuffer);
+            }
+            istr.clear();
+            istr.ignore(99, '\n');
+        }
+        cout << "Price" << endl;
+        flag = true;
+        while(flag) {
+            cout << "> ";
+            (istr >> tempPrice && tempPrice > 0) 
+                ? this->m_price = tempPrice, flag = false
+                : flag = true;
+            flag && cout << ERROR_POS_PRICE << endl;
+            istr.clear();
+            istr.ignore(99, '\n');
+        }
+        cout << "Taxed" << endl;
+        cout << "(Y)es/(N)o: ";
+        flag = true;
+        while(flag) {
+            istr >> taxedBuffer;
+            !strcmp(taxedBuffer, "y") || !strcmp(taxedBuffer, "n") ? flag = false : flag = true;
+            if(!flag && !strcmp(taxedBuffer, "y"))  this->m_isTaxed = true;
+            if(flag)
+                cout << "Only 'y' and 'n' are acceptable: "; 
+            istr.clear();
+            istr.ignore(99, '\n');
+        }
+        cout << "Quantity" << endl;
+        flag = true;
+        while(flag) {
+            cout << "> ";
+            (istr >> tempQuantity && tempQuantity > 0 && tempQuantity < MAX_STOCK_NUMBER)
+                ?  this->m_quantity = tempQuantity, flag = false
+                :  flag = true;
+            flag && cout << ERROR_POS_QTY << endl;
+            istr.clear();
+            istr.ignore(99, '\n');
+        }
         return istr;
     }
 
