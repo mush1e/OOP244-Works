@@ -1,5 +1,6 @@
 #include <iomanip>
 #include "Item.h"
+// #include "PosIO.h"
 
 using namespace std;
 
@@ -9,18 +10,19 @@ namespace sdds {
 
     Item::~Item() {
         this->clear();
-        delete[] this->m_itemName;
+        if(this->m_itemName != nullptr)
+            delete[] this->m_itemName;
         this->m_itemName = nullptr;
     }
 
     Item::Item(const Item& other) {
-        this != &other ? *this = other : *this ;
+        *this = other;
     }
 
     Item& Item::operator=(const Item& other) {
         if(this != &other) {
 
-            memcpy(this->m_SKU, other.m_SKU, MAX_SKU_LEN+1);
+            strcpy(this->m_SKU, other.m_SKU);
 
             if(this->m_itemName != nullptr) {
                 delete[] this->m_itemName;
@@ -35,6 +37,7 @@ namespace sdds {
             this->m_quantity    = other.m_quantity;
             this->m_displayType = other.m_displayType;
             this->err           = other.err;
+
         }
         return *this;
     }
@@ -79,12 +82,12 @@ namespace sdds {
         return value += ROp.cost() * ROp.quantity();
     }
     
-    Item& Item::displayType(int posValue) {
-
-        (posValue == POS_LIST || posValue == POS_FORM )
-            ? this->m_displayType = posValue 
-            : this->m_displayType;
-
+    Item &Item::displayType(int type)
+    {
+        if (type == POS_LIST || type == POS_FORM)
+        {
+            this->m_displayType = type;
+        }
         return *this;
     }
     
@@ -143,14 +146,14 @@ namespace sdds {
         char skuBuffer[MAX_SKU_LEN * 2]{};
         char nameBuffer[MAX_NAME_LEN * 2]{};
         char taxedBuffer[10] {};
-        double tempPrice;
-        int tempQuantity;
+        double tempPrice = 0.0;
+        int tempQuantity = 0;
         cout << "Sku" << endl;
         while(flag) {
             cout << "> ";
             istr >> skuBuffer;
             if (strlen(skuBuffer) > MAX_SKU_LEN)    cout << ERROR_POS_SKU << endl; 
-            else    flag = false && strcpy(this->m_SKU, skuBuffer);
+            else    flag = false && strncpy(this->m_SKU, skuBuffer, MAX_SKU_LEN);
             istr.clear();
             istr.ignore(99, '\n');
         }
@@ -159,12 +162,12 @@ namespace sdds {
         while(flag) {
             cout << "> ";
             istr.get(nameBuffer, MAX_NAME_LEN * 2, '\n');
-            if (strlen(skuBuffer) > MAX_NAME_LEN)   cout << ERROR_POS_NAME << endl;
+            if (strlen(nameBuffer) > MAX_NAME_LEN)   cout << ERROR_POS_NAME << endl;
             else {
                 flag = false;
-                delete[] this->m_itemName;
-                this->m_itemName = new char [strlen(skuBuffer) + 1];
-                strcpy(this->m_itemName, nameBuffer);
+                if(this->m_itemName != nullptr)     delete[] this->m_itemName;
+                this->m_itemName = new char [strlen(nameBuffer) + 1];
+                strncpy(this->m_itemName, nameBuffer, MAX_NAME_LEN);
             }
             istr.clear();
             istr.ignore(99, '\n');
@@ -173,12 +176,12 @@ namespace sdds {
         flag = true;
         while(flag) {
             cout << "> ";
-            (istr >> tempPrice && tempPrice > 0) 
+            istr.clear();
+            istr.ignore();
+            (istr >> tempPrice && tempPrice >= 0) 
                 ? this->m_price = tempPrice, flag = false
                 : flag = true;
             flag && cout << ERROR_POS_PRICE << endl;
-            istr.clear();
-            istr.ignore(99, '\n');
         }
         cout << "Taxed" << endl;
         cout << "(Y)es/(N)o: ";
@@ -200,17 +203,51 @@ namespace sdds {
                 ?  this->m_quantity = tempQuantity, flag = false
                 :  flag = true;
             flag && cout << ERROR_POS_QTY << endl;
+            cout << "111111";
             istr.clear();
             istr.ignore(99, '\n');
+            cout << "111111";
         }
         return istr;
     }
 
     ofstream& Item::save(ofstream& ostr) const {
+        if (err)    cerr << err << endl;
+        else {
+            ostr << itemType() << "," << this->m_SKU << "," << this->m_itemName
+                 << "," << this->m_price << "," << int(this->m_isTaxed) << ","
+                 << this->m_quantity << endl;
+        }
         return ostr;
     }
 
+
     ifstream& Item::load(ifstream& istr) {
+        char tempSKU[MAX_SKU_LEN * 2];
+        char tempName[MAX_NAME_LEN * 2];
+        double tempPrice;
+        int tempTaxed;
+        int tempQuantity;
+        bool flag = true;
+        this->clear();
+
+        istr.getline(tempSKU, MAX_NAME_LEN*2, ',');
+        istr.getline(tempName, MAX_NAME_LEN*2, ',');
+        istr >> tempPrice;
+        istr.ignore();
+        istr >> tempTaxed;
+        istr.ignore();
+        istr >> tempQuantity;
+
+        if(!istr.fail()) {
+            strlen(tempSKU) > MAX_SKU_LEN ? flag = false, err = ERROR_POS_SKU : flag;
+            !err && strlen(tempName) > MAX_NAME_LEN ? flag = false, err = ERROR_POS_NAME : flag;
+            !err && tempPrice < 0 ? flag = false, err = ERROR_POS_PRICE : flag;
+            !err && tempTaxed != 0 && tempTaxed != 1 ?  flag = false, err = ERROR_POS_TAX: flag ;
+            !err && tempQuantity < 0 || tempQuantity > MAX_STOCK_NUMBER ? flag = false, err = ERROR_POS_STOCK : flag;
+        }
+        else    flag = false;
+        cout << "loadex";
         return istr;
     } 
 

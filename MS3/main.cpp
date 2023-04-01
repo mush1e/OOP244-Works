@@ -63,7 +63,9 @@ int main() {
       "12> " << MAX_STOCK_NUMBER + 1 << endl <<
       "13> 10\n";
    T[cnt++] = getTool();
+   cout << "11111111";
    M = T[0];
+   cout << "11111111";
    for(i = 0; i < cnt; i++) {
       T[i].displayType(POS_LIST);
       cout << T[i] << (T[i] == "3456" ? "<- Knife!" : "") << endl;
