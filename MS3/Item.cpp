@@ -125,7 +125,7 @@ namespace sdds {
 					<< setprecision(2) << this->m_price << "|"
 					<< setw(3) << (this->m_isTaxed ? " X |" : "   |")
 					<< setw(4) << right << this->m_quantity << "|"
-					<< setw(10) << fixed << setprecision(2)
+					<< setw(9) << fixed << setprecision(2)
 					<< cost() * this->m_quantity << "|";
 				break;
 			case POS_FORM:
