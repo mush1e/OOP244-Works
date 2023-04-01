@@ -152,7 +152,11 @@ namespace sdds {
 			cout << "> ";
 			istr >> skuBuffer;
 			if (strlen(skuBuffer) > MAX_SKU_LEN)    cout << ERROR_POS_SKU << endl;
-			else    flag = false && strncpy(this->m_SKU, skuBuffer, MAX_SKU_LEN);
+			else   {
+                flag = false;
+                strcpy(this->m_SKU, skuBuffer);
+            } 
+
 			istr.clear();
 			istr.ignore(99, '\n');
 		}
@@ -177,12 +181,13 @@ namespace sdds {
 		flag = true;
 		while (flag) {
 			cout << "> ";
-			istr.clear();
-			istr.ignore();
 			(istr >> tempPrice && tempPrice >= 0)
-				? this->m_price = tempPrice, flag = false
+				? flag = false
 				: flag = true;
 			flag&& cout << ERROR_POS_PRICE << endl;
+            (!flag) ? this->m_price = tempPrice : tempPrice;
+            istr.clear();
+			istr.ignore(99, '\n');
 		}
 		cout << "Taxed" << endl;
 		cout << "(Y)es/(N)o: ";
