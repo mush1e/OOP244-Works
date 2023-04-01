@@ -1,4 +1,5 @@
 #include <iomanip>
+#include <cstring>
 #include "Item.h"
 // #include "PosIO.h"
 #define _CRT_SECURE_NO_WARNINGS
@@ -48,7 +49,8 @@ namespace sdds {
 	}
 
 	bool Item::operator>(const Item& other) const {
-		return strcmp(this->m_SKU, other.m_SKU) > 0;
+		bool ret = strcmp(this->m_SKU, other.m_SKU) > 0;
+        return ret;
 	}
 
 	int Item::operator+=(const int value) {
