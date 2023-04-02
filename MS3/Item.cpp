@@ -72,7 +72,7 @@ namespace sdds {
 			? this->m_quantity = 0, error = true
 			: this->m_quantity = this->m_quantity - value;
 
-		error ? this->err = ERROR_POS_STOCK : err;
+		error ? this->err = ERROR_POS_QTY : err;
 
 		return this->m_quantity;
 	}
@@ -249,7 +249,7 @@ namespace sdds {
 			!err && strlen(tempName) > MAX_NAME_LEN ? flag = false, err = ERROR_POS_NAME : flag;
 			!err && tempPrice < 0 ? flag = false, err = ERROR_POS_PRICE : flag;
 			!err && tempTaxed != 0 && tempTaxed != 1 ? flag = false, err = ERROR_POS_TAX : flag;
-			(!err && (tempQuantity < 0 || tempQuantity > MAX_STOCK_NUMBER)) ? flag = false, err = ERROR_POS_STOCK : flag;
+			(!err && (tempQuantity < 0 || tempQuantity > MAX_STOCK_NUMBER)) ? flag = false, err = ERROR_POS_QTY : flag;
 		} else    flag = false;
         if(flag) {
             strcpy(this->m_SKU, tempSKU);
