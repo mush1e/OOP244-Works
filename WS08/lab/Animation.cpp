@@ -24,7 +24,7 @@ namespace sdds {
     }
 
     Animation::operator bool() const {
-        return this->m_dimension == 2 || this->m_dimension == 3 && this->get() != 0;
+        return (this->m_dimension == 2 || this->m_dimension == 3) && this->get() != 0;
     }
 
     ostream& Animation::play(ostream& ostr) {
