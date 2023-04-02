@@ -220,8 +220,8 @@ namespace sdds {
 		if (err)    cerr << err << endl;
 		else {
 			ostr << itemType() << "," << this->m_SKU << "," << this->m_itemName
-				<< "," << this->m_price << "," << int(this->m_isTaxed) << ","
-				<< this->m_quantity;
+				 << "," << fixed	<< setprecision(2) << this->m_price << "," 
+                 << int(this->m_isTaxed) << "," << this->m_quantity;
 		}
 		return ostr;
 	}
