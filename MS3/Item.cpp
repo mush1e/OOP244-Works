@@ -273,7 +273,7 @@ namespace sdds {
                     ? ostr.write(this->m_itemName, 20)
 					: ostr << setw(20) << this->m_itemName;
         ostr << "|" << setw(10) << right << fixed << setprecision(2) 
-             << cost() << " |" << " " << (this->m_isTaxed ? "T" : " ") << " |" << endl;
+             << cost() << " |" << "  " << (this->m_isTaxed ? "T" : " ") << "  |" << endl;
         return ostr;
 	}
 }
