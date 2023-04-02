@@ -8,8 +8,8 @@ namespace sdds {
 
     VRVideo::VRVideo() : Video() { }
 
-    VRVideo::VRVideo (int length, char* equipment) : Video(length) {
-        if(!this->get()) {
+    VRVideo::VRVideo (int length, const char* equipment) : Video(length) {
+        if(equipment != nullptr) {
             this->m_equipment = new char [strlen(equipment) + 1];
             strcpy(this->m_equipment, equipment);
         }
@@ -29,9 +29,13 @@ namespace sdds {
         strcpy(this->m_equipment, buffer);
     }
 
+    VRVideo::operator bool() const{
+        return  this->m_equipment != nullptr && this->get() != 0;
+    }
+
     ostream& VRVideo::play(ostream& ostr) {
         if(*this) {
-            ostr << "VRVideo requires" << this->m_equipment << endl
+            ostr << "VRVideo requires " << this->m_equipment << endl
                  << "Video Length = " << Video::get(); 
         }
         return ostr; 

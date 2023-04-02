@@ -8,7 +8,7 @@ namespace sdds {
         public:
             virtual std::ostream& play(std::ostream& ostr) = 0;
             virtual void load(std::istream& istr)          = 0;
-            virtual ~Media()                               = 0;
+            virtual ~Media() {};
     };
     std::ostream& operator << (std::ostream& ostr, Media& other);
     std::istream& operator >> (std::istream& istr, Media& other);

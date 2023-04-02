@@ -8,7 +8,7 @@ namespace sdds {
     Video::Video()  {}    // Values already initialised to default
 
     Video::Video (const int value) {
-        this->m_length = value >= 0 ? value : 0;
+        this->m_length = value > 0 ? value : 0;
     }
 
     int Video::get() const {

@@ -6,11 +6,11 @@
 namespace sdds {
 
     class VRVideo : public Video {
-        char* m_equipment;
+        char* m_equipment {};
 
         public:
             VRVideo(); 
-            VRVideo(int length, char* equipment);
+            VRVideo(int length, const char* equipment);
             ~VRVideo();
 
             operator bool() const;
