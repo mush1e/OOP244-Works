@@ -221,7 +221,7 @@ namespace sdds {
 		else {
 			ostr << itemType() << "," << this->m_SKU << "," << this->m_itemName
 				<< "," << this->m_price << "," << int(this->m_isTaxed) << ","
-				<< this->m_quantity << endl;
+				<< this->m_quantity;
 		}
 		return ostr;
 	}
