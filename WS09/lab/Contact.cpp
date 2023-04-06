@@ -44,8 +44,8 @@ namespace sdds {
         return Person::operator bool()
                && this->m_address != nullptr && strLen(this->m_address) != 0
                && this->m_city != nullptr    && strLen(this->m_city)    != 0
-               && strLen(this->m_province)   == 2
-               && strLen(this->m_postalCode) == 6;
+               && strLen(this->m_province)                              == 2
+               && strLen(this->m_postalCode)                            == 6;
     }
 
     istream& Contact::read(istream& istr) {
