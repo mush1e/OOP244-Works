@@ -15,12 +15,21 @@ namespace sdds {
         this != &other ? *this = other : *this;
     }
 
+    void Contact::operator~() {
+        Person::operator~();
+        this->m_address ? delete[] this->m_address : (void)0;
+        this->m_city    ? delete[] this->m_city    : (void)0;
+        this->m_address = nullptr;
+        this->m_city    = nullptr;
+    }
+
     Contact& Contact::operator=(const Contact& other) {
         this->m_address ? delete[] this->m_address : (void)0;
         this->m_city    ? delete[] this->m_city    : (void)0;
         this->m_address = nullptr;
         this->m_city    = nullptr;
         if(other) {
+            Person::operator=(other);
             this->m_address = new char[strLen(other.m_address) + 1];
             this->m_city    = new char[strLen(other.m_city)    + 1];
             strCpy(this->m_address, other.m_address);
@@ -63,8 +72,22 @@ namespace sdds {
             strCpy(this->m_province, provinceBuffer);
             strCpy(this->m_postalCode, postalCodeBuffer);
         }
+        else    ~*this;
         return istr;
     }
 
-
+    ostream& Contact::write(ostream& ostr) const {
+        if(*this) {
+            Person::write(ostr) 
+                 << endl << m_address 
+                 << endl << m_city 
+                 << " " <<  m_province
+                 << endl;
+            for(int i = 0; i < 3 && ostr << this->m_postalCode[i]; i++);
+            ostr << " ";
+            for(int i = 3; i < 6 && ostr << this->m_postalCode[i]; i++);
+            ostr << endl;
+        }
+        return ostr;
+    }
 }

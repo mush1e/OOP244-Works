@@ -18,6 +18,7 @@ namespace sdds {
             ~Contact();
             Contact(const Contact& other);
             Contact& operator=(const Contact& other);
+            void operator~() override;
             operator bool() const override;
             std::istream& read(std::istream& istr) override;
             std::ostream& write(std::ostream& ostr)const override;
