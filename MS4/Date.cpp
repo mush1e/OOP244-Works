@@ -151,7 +151,7 @@ namespace sdds {
             
             ostr << m_year << "/" << setfill('0') << setw(2) << m_month << "/" << setfill('0')  << setw(2) << m_day;
             
-            if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min;
+            if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min << setfill(' ');
         }
         return ostr;
     }
