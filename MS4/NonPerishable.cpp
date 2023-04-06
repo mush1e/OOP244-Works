@@ -17,6 +17,7 @@ namespace sdds {
                     ? "\n=============^\n" 
                     : "");
         }
+        ostr.unsetf(ios::right);
         return ostr;
     }
 
