@@ -34,7 +34,6 @@ namespace sdds {
         bool m_dateOnly{};
         Error errMsg{};
 
-        bool validateDate();
         void clearDate();
 
         public:
@@ -51,7 +50,7 @@ namespace sdds {
                  int min = 0);
 
             ~Date();
-
+        bool validateDate();
         Error error() const;
 
 		bool operator==(const Date& D) const;
