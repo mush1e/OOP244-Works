@@ -41,13 +41,16 @@ namespace sdds {
     }
 
     Contact::operator bool()const {
-        return this->m_address != nullptr;
+        return Person::operator bool()
+               && this->m_address != nullptr && strLen(this->m_address) != 0
+               && this->m_city != nullptr    && strLen(this->m_city)    != 0
+               && strLen(this->m_province)   == 2
+               && strLen(this->m_postalCode) == 6;
     }
 
     istream& Contact::read(istream& istr) {
         *this ? *this = Contact() : *this;
         Person::read(istr);
-        bool fail                   {};
         char addressBuffer[255]     {};
         char cityBuffer[255]        {};
         char provinceBuffer[255]    {};
@@ -56,21 +59,11 @@ namespace sdds {
         istr.getline(cityBuffer     , 255, ',');
         istr.getline(provinceBuffer , 255, ',');
         istr >> postalCodeBuffer;
-        strLen(addressBuffer) == 0
-        ||  strLen(cityBuffer) == 0
-        ||  strLen(provinceBuffer) != 2
-        ||  strLen(provinceBuffer) != 6
-            ?   fail = true   
-            :   bool   {};
-        if ( !fail && !istr.fail() ) {
-            this->m_address ? delete[] this->m_address : (void)0;
-            this->m_city    ? delete[] this->m_city    : (void)0;
-            this->m_address = new char[strLen(addressBuffer) + 1];
-            this->m_city    = new char[strLen(cityBuffer)    + 1];
-            strCpy(this->m_address, addressBuffer);
-            strCpy(this->m_city,    cityBuffer);
-            strCpy(this->m_province, provinceBuffer);
-            strCpy(this->m_postalCode, postalCodeBuffer);
+        if ( !istr.fail() ) {
+            delAlloCopy(this->m_address, addressBuffer);
+            delAlloCopy(this->m_city,    cityBuffer);
+            strCpy(this->m_province,     provinceBuffer);
+            strCpy(this->m_postalCode,   postalCodeBuffer);
         }
         else    ~*this;
         return istr;
