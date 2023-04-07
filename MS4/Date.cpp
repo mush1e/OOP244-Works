@@ -167,6 +167,7 @@ namespace sdds {
             
             if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min;
         }
+        ostr.unsetf(ios::right);
         return ostr << setfill(' ');
     }
 
