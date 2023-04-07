@@ -14,7 +14,7 @@ namespace sdds {
         if(*this && !istr.fail()) {
             Date expDate {};
             expDate.dateOnly(true);
-            cout << "Expiry date(YYYY/MM/DD)" << endl << "> ";
+            cout << "Expiry date (YYYY/MM/DD)" << endl << "> ";
             istr >> expDate;
             expDate
                 ? this->m_expiry = expDate
