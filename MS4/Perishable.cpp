@@ -16,8 +16,8 @@ namespace sdds {
             expDate.dateOnly(true);
             cout << "Expiry date(YYYY/MM/DD)" << endl << "> ";
             istr >> expDate;
-            expDate.validateDate() 
-                ? this->m_expiry = expDate 
+            expDate
+                ? this->m_expiry = expDate
                 : this->m_expiry, 
                   this->err = expDate.error();
         }
@@ -42,7 +42,7 @@ namespace sdds {
             Date expDate {};
             expDate.dateOnly(true);
             istr >> ch >> expDate;
-            expDate.validateDate() 
+            expDate 
                 ? this->m_expiry = expDate 
                 : this->m_expiry, 
                   this->err = expDate.error();

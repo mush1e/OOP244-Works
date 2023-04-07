@@ -49,23 +49,26 @@ namespace sdds {
                  int hour,
                  int min = 0);
 
+            Date (const Date& other);
+
             ~Date();
-        bool validateDate();
-        Error error() const;
+            bool validateDate();
+            Error error() const;
 
-		bool operator==(const Date& D) const;
-		bool operator!=(const Date& D) const;
-		bool operator< (const Date& D) const;
-		bool operator> (const Date& D) const;
-		bool operator<=(const Date& D) const;
-		bool operator>=(const Date& D) const;
+            Date& operator=(const Date& other);
+            bool operator==(const Date& D) const;
+            bool operator!=(const Date& D) const;
+            bool operator< (const Date& D) const;
+            bool operator> (const Date& D) const;
+            bool operator<=(const Date& D) const;
+            bool operator>=(const Date& D) const;
 
-        operator bool() const;
+            operator bool() const;
 
-        Date& dateOnly(bool value);
+            Date& dateOnly(bool value);
 
-		std::istream& read(std::istream& istr);
-		std::ostream& write(std::ostream& ostr) const; 
+            std::istream& read(std::istream& istr);
+            std::ostream& write(std::ostream& ostr) const; 
 
     };
 

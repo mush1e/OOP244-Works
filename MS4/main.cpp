@@ -104,7 +104,7 @@ void div(const char* title) {
    cout << ">>>> ";
    cout.width(70);
    cout.fill('-');
-   cout.unsetf(ios::right);
+   
    cout.setf(ios::left);
    cout << title << endl;
    cout.fill(' ');

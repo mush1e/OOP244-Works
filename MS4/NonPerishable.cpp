@@ -12,10 +12,10 @@ namespace sdds {
     ostream& NonPerishable::write(ostream& ostr) const {
         Item::write(ostr);
         if(*this) {
-            ostr << "     N / A   |"
-                 << ((this->m_displayType == POS_FORM) 
-                    ? "\n=============^\n" 
-                    : "");
+            ostr  << ((this->m_displayType == POS_FORM)
+
+                    ? "=============^\n" 
+                    : "     N / A   |");
         }
         ostr.unsetf(ios::right);
         return ostr;

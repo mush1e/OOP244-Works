@@ -57,6 +57,20 @@ namespace sdds {
     }
 
 
+    Date::Date (const Date& other) {
+        this != &other ? *this = other : *this;
+    }
+
+    Date& Date::operator=(const Date& other) {
+        // this->clearDate();
+        this->dateOnly(true);
+        this->m_year = other.m_year;
+        this->m_month = other.m_month;
+        this->m_day = other.m_day;
+        return *this;
+    }
+
+
     Date::~Date() {}
 
     bool Date::validateDate() {
@@ -151,9 +165,9 @@ namespace sdds {
             
             ostr << m_year << "/" << setfill('0') << setw(2) << m_month << "/" << setfill('0')  << setw(2) << m_day;
             
-            if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min << setfill(' ');
+            if(!m_dateOnly)  ostr << ", " << setfill('0') << setw(2) << m_hour << ":" << setfill('0')  << setw(2) << m_min;
         }
-        return ostr;
+        return ostr << setfill(' ');
     }
 
     ostream& operator<<(ostream& ostr, const Date& ROp) {
