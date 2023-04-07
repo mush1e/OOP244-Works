@@ -28,7 +28,7 @@ namespace sdds {
         Item::write(ostr);
         if (*this) {
             ((this->m_displayType == POS_LIST) 
-                ? ostr <<  " " << this->m_expiry << " " 
+                ? ostr <<  "  " << this->m_expiry << "  |" 
                 : ostr << "Expiry date: " << this->m_expiry
                        << endl << "=============^" << endl);
         }
