@@ -28,7 +28,8 @@ using namespace std;
 namespace sdds {
 
     PosApp::~PosApp() {
-        for(int i = 0; i < this->m_nptr && this->m_Iptr[i]->clear(); i++);
+        for(int i = 0; i < this->m_nptr; i++)
+            this->m_Iptr[i]->clear();
     }
 
     PosApp::PosApp(const char* fileName) {
@@ -74,7 +75,7 @@ namespace sdds {
             m_Iptr[i] = iptr;
             m_Iptr[i]->load(ifstr);
             m_Iptr[i]->displayType(POS_LIST);
-            delete iptr; 
+            // delete iptr; 
         }
         this->m_nptr = i-1;
         return ostr;
