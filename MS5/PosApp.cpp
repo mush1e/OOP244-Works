@@ -58,6 +58,8 @@ namespace sdds {
 
     ostream& PosApp::loadRecs(ostream& ostr) {
         int i = 0;
+        char ch, delim;
+
         ostr << ">>>> Loading Items............."
         ".............................................." 
         << endl;
@@ -66,18 +68,16 @@ namespace sdds {
             ofstream ofstr(this->m_fileName);
             ofstr.close();
         }
-        for(int i = 0; i < m_nptr && m_Iptr[i]->clear(); i++);        
-        for(;!ifstr.eof() && i < MAX_NO_ITEMS;i++) {
-            char ch, delim;
-            ifstr >> ch >> delim;
+
+        for(int j = 0; j < m_nptr && m_Iptr[j]->clear(); j++);        
+        for(;ifstr >> ch >> delim && i < MAX_NO_ITEMS;i++) {            
             Item* iptr;
             (ch == 'P') ? iptr = new Perishable : iptr = new NonPerishable;
             m_Iptr[i] = iptr;
             m_Iptr[i]->load(ifstr);
             m_Iptr[i]->displayType(POS_LIST);
-            // delete iptr; 
         }
-        this->m_nptr = i-1;
+        this->m_nptr = i;
         return ostr;
     }
 
