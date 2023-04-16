@@ -28,8 +28,10 @@ using namespace std;
 namespace sdds {
 
     PosApp::~PosApp() {
-        for(int i = 0; i < this->m_nptr; i++)
-            this->m_Iptr[i]->clear();
+        for (int i = 0; i < this->m_nptr; i++) {
+            delete this->m_Iptr[i];
+            this->m_Iptr[i] = nullptr;
+        }
     }
 
     PosApp::PosApp(const char* fileName) {
