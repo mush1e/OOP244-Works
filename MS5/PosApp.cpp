@@ -214,9 +214,9 @@ namespace sdds {
         bill.clear();
         cin.ignore(1000, '\n');
         ostr << ">>>> Starting Point of Sale........................."
-                "........................." << endl << "> ";
+                "........................." << endl;
         while(flag) {
-            cout << "Enter SKU or <ENTER> only to end sale..." << endl;
+            cout << "Enter SKU or <ENTER> only to end sale..." << endl << "> ";
             cin.getline(sku, MAX_SKU_LEN + 1, '\n');
             if(cin.fail()) {
                 cout << "SKU too long" << endl;
