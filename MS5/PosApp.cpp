@@ -155,7 +155,7 @@ namespace sdds {
                      <<"], retry: Enter quantity to add: ";
             }
         }
-        this->m_Iptr[row-1] += inp;
+        *this->m_Iptr[row-1] += inp;
         ostr << ">>>> DONE!...................................................................";
         return ostr;
     }

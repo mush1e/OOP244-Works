@@ -43,7 +43,7 @@ namespace sdds {
             virtual Item& operator=(const Item& other);
             bool operator==(const char* name)  const;
             bool operator>(const Item& other)  const;
-            int operator+=(const int value);
+            virtual int operator+=(const int value);
             int operator-=(const int value);
             operator bool() const;
             
