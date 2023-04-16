@@ -230,6 +230,7 @@ namespace sdds {
                 else {
                     ostr << item->displayType(POS_FORM);
                     if (bool(item)) {
+                        *item -= 1;
                         bill.add(item);
                         ostr << ">>>>> Added to bill" << endl
                              << ">>>>> Total: " << bill.total() << endl;
