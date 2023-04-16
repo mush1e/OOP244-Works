@@ -169,7 +169,6 @@ namespace sdds {
         ostr << "Removing...." <<endl;
         this->m_Iptr[row-1]->displayType(POS_FORM);
         ostr << *this->m_Iptr[row-1];
-        ostr << *this->m_Iptr[row-1];
         delete this->m_Iptr[row-1];
         for(int i = row-1; i < this->m_nptr - 1; i++) 
             swap(this->m_Iptr[i], this->m_Iptr[i+1]);
