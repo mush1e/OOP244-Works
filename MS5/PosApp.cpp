@@ -63,7 +63,7 @@ namespace sdds {
         char ch, delim;
 
         ostr << ">>>> Loading Items............."
-        ".............................................." 
+                ".............................................." 
         << endl;
         ifstream ifstr(this->m_fileName);
         if(!ifstr.is_open()) {
@@ -85,7 +85,7 @@ namespace sdds {
 
     ostream& PosApp::saveRecs(ostream& ostr) {
         ostr << ">>>> Saving Data........................"
-        ".....................................";
+                ".....................................";
         ofstream ofstr(this->m_fileName);
         for(int i = 0; i < this->m_nptr && ofstr << *this->m_Iptr[i] << endl; i++);
         return ostr;
@@ -115,8 +115,21 @@ namespace sdds {
     }
 
     ostream& PosApp::addItem(ostream& ostr) {
-        return ostr << ">>>> Adding Item to the store................................................" 
-            << endl<< "Running addItem()";
+        ostr << ">>>> Adding Item to the store....................."
+                "..........................." << endl; 
+
+        if(this->m_nptr < MAX_NO_ITEMS) {
+            Item* usrInp;
+            char perish;
+            ostr << "Is the Item perishable? (Y)es/(N)o: ";
+            cin >> perish;
+            perish == 'y' ? usrInp = new Perishable{} : usrInp = new NonPerishable{};
+            usrInp->read(cin);
+            ostr << ">>>> DONE!.................................................................";
+            if(usrInp)  this->m_Iptr[this->m_nptr++] = usrInp;
+        }
+        else    ostr << "Inventory Full!";
+        return  ostr;
     }
 
     ostream &PosApp::stockItem(ostream& ostr) {
