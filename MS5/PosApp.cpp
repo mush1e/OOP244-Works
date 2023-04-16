@@ -127,7 +127,7 @@ namespace sdds {
             cin >> perish;
             perish == 'y' ? usrInp = new Perishable{} : usrInp = new NonPerishable{};
             usrInp->read(cin);
-            ostr << ">>>> DONE!.................................................................";
+            ostr << ">>>> DONE!...................................................................";
             if(usrInp)  this->m_Iptr[this->m_nptr++] = usrInp;
         }
         else    ostr << "Inventory Full!";
@@ -135,8 +135,29 @@ namespace sdds {
     }
 
     ostream& PosApp::stockItem(ostream& ostr) {
-        return ostr << ">>>> Select an item to stock................................................." 
-            << endl << "Running stockItem()";
+        ostr << ">>>> Select an item to stock........................"
+                "........................." << endl;
+        int row = this->selectItem(ostr),
+            inp = 0;
+        ostr << "Selected Item:" << endl;
+        ostr << this->m_Iptr[row-1]->displayType(POS_FORM);
+        ostr << "Enter quantity to add: ";
+        while(inp < 1 || inp > MAX_STOCK_NUMBER - this->m_Iptr[row-1]->quantity()) {
+            cin >> inp;
+            if(cin.fail()) {
+                inp = 0;
+                cin.clear();
+                cin.ignore(1000, '\n');
+                ostr << "Invalid Integer, try again: ";
+            }
+            else if (inp < 1 || inp > this->m_nptr) {
+                ostr << "[1<=value<=" << MAX_STOCK_NUMBER - this->m_Iptr[row-1]->quantity() 
+                     <<"], retry: Enter the row number: ";
+            }
+        }
+        this->m_Iptr[row-1] += inp;
+        ostr << ">>>> DONE!...................................................................";
+        return ostr;
     }
 
     int PosApp::selectItem(ostream& ostr){
@@ -167,14 +188,13 @@ namespace sdds {
                 "............................." << endl;
         int row = selectItem(ostr);
         ostr << "Removing...." <<endl;
-        this->m_Iptr[row-1]->displayType(POS_FORM);
-        ostr << *this->m_Iptr[row-1];
+        ostr << this->m_Iptr[row-1]->displayType(POS_FORM);
         delete this->m_Iptr[row-1];
         for(int i = row-1; i < this->m_nptr - 1; i++) 
             swap(this->m_Iptr[i], this->m_Iptr[i+1]);
         this->m_Iptr[m_nptr-1] = nullptr;
         this->m_nptr--;
-        return ostr << ">>>> DONE!.................................................................";
+        return ostr << ">>>> DONE!...................................................................";
     }
 
     ostream& PosApp::pos(ostream& ostr) const {
