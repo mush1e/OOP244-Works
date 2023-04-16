@@ -17,6 +17,7 @@ that my professor provided to complete my project milestones.
 */
 
 #include <iostream>
+#include <iomanip>
 #include <cstring>
 #include "PosApp.h"
 #include "Perishable.h"
@@ -98,9 +99,11 @@ namespace sdds {
             netAssets += this->m_Iptr[i]->cost() * this->m_Iptr[i]->quantity();
             ostr << right << setw(4) << (i + 1) << " | " << *this->m_Iptr[i] << endl;
         }
-        return ostr << "-----^--------^--------------------^-------^---^----^---------^-------------^"  << endl
-                    << setw(48) << right << "Total Asset: $  |" << setw(14) << fixed << setprecision(2) << netAssets 
-                    << "|" << endl << "-----------------------------------------------^--------------^" << endl;
+        ostr << "-----^--------^--------------------^-------^---^----^---------^-------------^"  << endl
+             << setw(48) << right << "Total Asset: $  |" << setw(14) << fixed << setprecision(2) << netAssets 
+             << "|" << endl << "-----------------------------------------------^--------------^" << endl;
+        
+        return ostr;
     }
 
     ostream& PosApp::addItem(ostream& ostr) {
