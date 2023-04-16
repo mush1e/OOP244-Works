@@ -228,12 +228,12 @@ namespace sdds {
                 if(item == nullptr)
                     ostr << "!!!!! Item Not Found !!!!!" << endl;
                 else {
-                    *item -= 1;
-                    if (bool(item)) {
+                    if (item->quantity() != 0) {
+                        *item -= 1;
                         ostr << item->displayType(POS_FORM) << endl;
                         bill.add(item);
                         ostr << ">>>>> Added to bill" << endl
-                             << ">>>>> Total: " << bill.total() << endl;
+                                          << ">>>>> Total: " << bill.total() << endl;
                     }
                     else{
                         cout << "Item out of stock" << endl;
