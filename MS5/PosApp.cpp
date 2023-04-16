@@ -91,7 +91,7 @@ namespace sdds {
         return ostr;
     }
 
-    ostream& PosApp::listItems(ostream& ostr) {
+    ostream& PosApp::listItems(ostream& ostr, bool list) {
         double netAssets {};
         for(int i = 0; i < this->m_nptr - 1; i++)
             for(int j = 0; j < this->m_nptr - i - 1; j++)
@@ -107,9 +107,11 @@ namespace sdds {
             netAssets += this->m_Iptr[i]->cost() * this->m_Iptr[i]->quantity();
             ostr << right << setw(4) << (i + 1) << " | " << *this->m_Iptr[i] << endl;
         }
-        ostr << "-----^--------^--------------------^-------^---^----^---------^-------------^"  << endl
-             << setw(48) << right << "Total Asset: $  |" << setw(14) << fixed << setprecision(2) << netAssets 
-             << "|" << endl << "-----------------------------------------------^--------------^" << endl;
+
+            ostr << "-----^--------^--------------------^-------^---^----^---------^-------------^"  << endl;
+            if(list)
+                ostr << setw(48) << right << "Total Asset: $  |" << setw(14) << fixed << setprecision(2) << netAssets 
+                     << "|" << endl << "-----------------------------------------------^--------------^" << endl;
         
         return ostr;
     }
@@ -132,14 +134,48 @@ namespace sdds {
         return  ostr;
     }
 
-    ostream &PosApp::stockItem(ostream& ostr) {
+    ostream& PosApp::stockItem(ostream& ostr) {
         return ostr << ">>>> Select an item to stock................................................." 
             << endl << "Running stockItem()";
     }
 
-    ostream &PosApp::removeItem(ostream& ostr) {
-        return ostr << ">>>> Remove Item............................................................." 
-         << endl << "Running removeItem()";
+    int PosApp::selectItem(ostream& ostr){
+        int inp {};
+        ostr << ">>>> Item Selection by row number............................................" << endl
+             << "Press <ENTER> to start....";
+        cin.ignore(1000, '\n');
+        cin.get();
+        this->listItems(ostr, false);
+        ostr << "Enter the row number: ";
+        while(inp < 1 || inp > this->m_nptr) {
+            cin >> inp;
+            if(cin.fail()) {
+                inp = 0;
+                cin.clear();
+                cin.ignore(1000, '\n');
+                ostr << "Invalid Integer, try again: ";
+            }
+            else if (inp < 1 || inp > this->m_nptr) {
+                ostr << "[1<=value<=" << this->m_nptr <<"], retry: Enter the row number: ";
+            }
+        }
+        return inp;
+    }
+
+    ostream& PosApp::removeItem(ostream& ostr) {
+        ostr << ">>>> Remove Item................................"
+                "............................." << endl;
+        int row = selectItem(ostr);
+        ostr << "Removing...." <<endl;
+        this->m_Iptr[row-1]->displayType(POS_FORM);
+        ostr << *this->m_Iptr[row-1];
+        ostr << *this->m_Iptr[row-1];
+        delete this->m_Iptr[row-1];
+        for(int i = row-1; i < this->m_nptr - 1; i++) 
+            swap(this->m_Iptr[i], this->m_Iptr[i+1]);
+        this->m_Iptr[m_nptr-1] = nullptr;
+        this->m_nptr--;
+        return ostr << ">>>> DONE!.................................................................";
     }
 
     ostream& PosApp::pos(ostream& ostr) const {

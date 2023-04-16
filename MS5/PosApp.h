@@ -40,10 +40,12 @@ namespace sdds {
             std::ostream& addItem(std::ostream&    ostr = std::cout);
             std::ostream& removeItem(std::ostream& ostr = std::cout);
             std::ostream& stockItem(std::ostream&  ostr = std::cout);
-            std::ostream& listItems(std::ostream&  ostr = std::cout);
+            std::ostream& listItems(std::ostream&  ostr = std::cout, bool list = true);
             std::ostream& pos(std::ostream&        ostr = std::cout) const;
             std::ostream& saveRecs(std::ostream&   ostr = std::cout);
             std::ostream& loadRecs(std::ostream&   ostr = std::cout);
+
+            int selectItem(std::ostream& ostr = std::cout);
 
             PosApp& menu();
             PosApp& run();
