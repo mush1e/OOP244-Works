@@ -141,7 +141,7 @@ namespace sdds {
 
     PosApp& PosApp::run() {
         int userSelection;
-        loadRecs() << endl;
+        loadRecs();
         do {
             menu();
             validateInput(userSelection);
