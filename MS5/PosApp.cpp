@@ -152,7 +152,7 @@ namespace sdds {
             }
             else if (inp < 1 || inp > this->m_nptr) {
                 ostr << "[1<=value<=" << MAX_STOCK_NUMBER - this->m_Iptr[row-1]->quantity() 
-                     <<"], retry: Enter the row number: ";
+                     <<"], retry: Enter quantity to add: ";
             }
         }
         this->m_Iptr[row-1] += inp;
