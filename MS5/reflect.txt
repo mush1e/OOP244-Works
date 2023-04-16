@@ -1,0 +1,23 @@
+/*
+Final Project Milestone 5
+Module: POS
+Filename: reflect.txt
+Version 1.0
+Author	Mustafa Siddiqui
+Student ID: 117434225
+Email: msiddiqui48@myseneca.ca
+Revision History
+-----------------------------------------------------------
+Date        Reason
+2023/03/09  Preliminary release
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------
+*/
+
+Through the course of this project, I've solidified alot of the concepts ive learnt! It helped me better understand inheritance and polymorhism 
+(having an array of perishable and non perishable items in an items array). I also experienced alot of virtuals and saw how they were transitive. 
+(Out of curiosity I ended up looking up VTables and going down that rabbit hole). Honestly the most difficult part for me was keeping track of all 
+my display formatting! This is what caused me the most issues when submitting. Other than that this project was tedious but otherwise straight forward!
+I just wish we had more control over the design of our implementation to solve the issue provided. 
