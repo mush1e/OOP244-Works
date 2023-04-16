@@ -89,7 +89,7 @@ namespace sdds {
 			? this->m_quantity = 0, error = true
 			: this->m_quantity = this->m_quantity - value;
 
-		error ? this->err = ERROR_POS_QTY : err;
+		error ? this->err = ERROR_POS_STOCK : err;
 
 		return this->m_quantity;
 	}
