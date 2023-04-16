@@ -71,7 +71,7 @@ namespace sdds {
             ifstr >> ch >> delim;
             Item* iptr;
             (ch == 'P') ? iptr = new Perishable : iptr = new NonPerishable;
-            *m_Iptr[i] = * iptr;
+            m_Iptr[i] = iptr;
             m_Iptr[i]->load(ifstr);
             m_Iptr[i]->displayType(POS_LIST);
             delete iptr; 
