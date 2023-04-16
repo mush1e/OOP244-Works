@@ -228,9 +228,9 @@ namespace sdds {
                 if(item == nullptr)
                     ostr << "!!!!! Item Not Found !!!!!" << endl;
                 else {
+                    *item -= 1;
                     ostr << item->displayType(POS_FORM);
                     if (bool(item)) {
-                        *item -= 1;
                         bill.add(item);
                         ostr << ">>>>> Added to bill" << endl
                              << ">>>>> Total: " << bill.total() << endl;
