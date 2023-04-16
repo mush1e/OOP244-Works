@@ -11,10 +11,9 @@ namespace sdds {
 
     class Perishable : public Item {
         Date m_expiry {};
-
         public:
             char itemType() const override;
-
+            Item& operator=(const Perishable& other);
             std::ostream&  write(std::ostream& ostr)  const override;
             std::istream&  read(std::istream& istr)         override;
             std::ofstream& save(std::ofstream& ostr)  const override;

@@ -19,6 +19,8 @@ that my professor provided to complete my project milestones.
 #include <iostream>
 #include <cstring>
 #include "PosApp.h"
+#include "Perishable.h"
+#include "NonPerishable.h"
 
 using namespace std;
 
@@ -28,13 +30,15 @@ namespace sdds {
         bool(fileName) ? strcpy(this->m_fileName, fileName) : 0;
     }
 
+    void PosApp::sortItems(){
+
+    }
+
     void PosApp::validateInput(int& userSelection) {
         bool flag = true;
-        while (flag)
-        {
+        while (flag) {
             cin >> userSelection;
-            if (cin.fail())
-            {
+            if (cin.fail()) {
                 cin.clear();
                 cin.ignore(1000,'\n');
                 cout << "Invalid Integer, try again: ";
@@ -47,18 +51,56 @@ namespace sdds {
     }
 
     ostream& PosApp::loadRecs(ostream& ostr) {
-        return ostr << ">>>> Loading Items..........................................................."
-            << endl << "Loading data from " << this->m_fileName;
+        int i = 0;
+        ostr << ">>>> Loading Items............."
+        ".............................................." 
+        << endl;
+        ifstream ifstr(this->m_fileName);
+        if(!ifstr.is_open()) {
+            ofstream ofstr(this->m_fileName);
+            ofstr.close();
+        }
+        for(int i = 0; i < m_nptr && m_Iptr[i]->clear(); i++);        
+        for(;!ifstr.eof() && i < MAX_NO_ITEMS;i++) {
+            char ch, delim;
+            ifstr >> ch >> delim;
+            Item* iptr;
+            (ch == 'P') ? iptr = new Perishable : iptr = new NonPerishable;
+            m_Iptr[i] = iptr;
+            m_Iptr[i]->load(ifstr);
+            m_Iptr[i]->displayType(POS_LIST);
+        }
+        this->m_nptr = i-1;
+        return ostr;
     }
 
     ostream& PosApp::saveRecs(ostream& ostr) {
-        return ostr << ">>>> Saving Data............................................................." 
-            << endl << "Saving data in " << this->m_fileName;
+        ostr << ">>>> Saving Data........................"
+        "....................................."  << endl;
+        ofstream ofstr(this->m_fileName);
+        for(int i = 0; i < this->m_nptr && ofstr << *this->m_Iptr[i] << endl; i++);
+        return ostr;
     }
 
-    ostream& PosApp::listItems(ostream& ostr) const {
-        return ostr << ">>>> Listing Items..........................................................." 
-            << endl << "Running listItems()";
+    ostream& PosApp::listItems(ostream& ostr) {
+        double netAssets {};
+        for(int i = 0; i < this->m_nptr - 1; i++)
+            for(int j = 0; j < this->m_nptr - i - 1; j++)
+                if(strcmp(this->m_Iptr[j]->getName(), this->m_Iptr[j+1]->getName()) > 0) {
+                    auto *temp =  this->m_Iptr[j];
+                    this->m_Iptr[j] = this->m_Iptr[j+1];
+                    this->m_Iptr[j+1] = temp;
+                }
+        ostr << ">>>> Listing Items..........................................................."  << endl
+             <<  " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |"  << endl
+             <<  "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
+        for(int i = 0; i < m_nptr; i++) {
+            netAssets += this->m_Iptr[i]->cost() * this->m_Iptr[i]->quantity();
+            ostr << right << setw(4) << (i + 1) << " | " << *this->m_Iptr[i] << endl;
+        }
+        return ostr << "-----^--------^--------------------^-------^---^----^---------^-------------^"  << endl
+                    << setw(48) << right << "Total Asset: $  |" << setw(14) << fixed << setprecision(2) << netAssets 
+                    << "|" << endl << "-----------------------------------------------^--------------^" << endl;
     }
 
     ostream& PosApp::addItem(ostream& ostr) {

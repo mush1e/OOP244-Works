@@ -293,4 +293,8 @@ namespace sdds {
              << cost() << " |" << "  " << (this->m_isTaxed ? "T" : " ") << "  |" << endl;
         return ostr;
 	}
+
+    char* Item::getName() const {
+        return this->m_itemName;
+    }
 }

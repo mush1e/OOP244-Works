@@ -35,6 +35,13 @@ namespace sdds {
         return ostr;
     }
 
+    Item& Perishable::operator=(const Perishable& other) {
+        Item::operator=(other);
+        this->m_expiry = other.m_expiry;
+        return *this;
+    }
+
+
     ifstream& Perishable::load(ifstream& istr) {
         Item::load(istr);
         char ch;

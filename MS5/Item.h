@@ -40,12 +40,14 @@ namespace sdds {
             Item();
             ~Item();
             Item(const Item& other);
-            Item& operator=(const Item& other);
+            virtual Item& operator=(const Item& other);
             bool operator==(const char* name)  const;
             bool operator>(const Item& other)  const;
             int operator+=(const int value);
             int operator-=(const int value);
             operator bool() const;
+            
+            char* getName() const;
 
             virtual char itemType() const = 0;
             double cost()  const;
