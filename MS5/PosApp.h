@@ -29,7 +29,7 @@ namespace sdds {
         Item* m_Iptr[MAX_NO_ITEMS]   {};
 
         void validateInput(int& input);
-
+        int search(char* sku) const;
         public:
             PosApp(const char *fileName = nullptr);
             PosApp(const PosApp& rep)   = delete; 

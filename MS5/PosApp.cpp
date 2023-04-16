@@ -19,6 +19,7 @@ that my professor provided to complete my project milestones.
 #include <iostream>
 #include <iomanip>
 #include <cstring>
+#include "Bill.h"
 #include "PosApp.h"
 #include "Perishable.h"
 #include "NonPerishable.h"
@@ -197,9 +198,49 @@ namespace sdds {
         return ostr << ">>>> DONE!...................................................................";
     }
 
+    int PosApp::search(char* sku) const{
+        int i = 0, index = -1;
+        while(index < 0 && i < this->m_nptr) {
+            *this->m_Iptr[i] == sku ? index = i : 0;
+            i++;
+        }
+        return index;
+    }
+
     ostream& PosApp::pos(ostream& ostr) const {
-        return ostr << ">>>> Starting Point of Sale.................................................." 
-            << endl <<"Running POS()";
+        bool flag = true;
+        char sku[MAX_SKU_LEN] {};
+        Bill bill;
+        bill.clear();
+        cin.ignore(1000, '\n');
+        ostr << ">>>> Starting Point of Sale........................."
+                "........................." << endl;
+        while(flag) {
+            cout << "Enter SKU or <ENTER> only to end sale..." << endl;
+            cin.getline(sku, MAX_SKU_LEN + 1, '\n');
+            if(cin.fail()) {
+                cout << "SKU too long" << endl;
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            else if (sku[0] != '\0'){
+                Item* item = search(sku) >= 0 ? this->m_Iptr[search(sku)] : nullptr;
+                if(item == nullptr)
+                    ostr << "!!!!! Item Not Found !!!!!" << endl;
+                else {
+                    ostr << item->displayType(POS_FORM);
+                    if (bool(item)) {
+                        bill.add(item);
+                        ostr << ">>>>> Added to bill" << endl
+                             << ">>>>> Total: " << bill.total() << endl;
+                    }
+                    else
+                        item->clear();
+                }
+            }
+            else    flag = false;
+        }
+        return bill.print(ostr);
     }   
 
 
