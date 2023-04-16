@@ -35,7 +35,7 @@ namespace sdds {
             PosApp(const PosApp& rep)   = delete; 
             void sortItems();
 		    PosApp& operator=(const PosApp& rep) = delete; 
-            ~PosApp();
+            // ~PosApp();
 
             std::ostream& addItem(std::ostream&    ostr = std::cout);
             std::ostream& removeItem(std::ostream& ostr = std::cout);

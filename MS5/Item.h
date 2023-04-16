@@ -38,7 +38,7 @@ namespace sdds {
 
         public:
             Item();
-            ~Item();
+            virtual ~Item();
             Item(const Item& other);
             virtual Item& operator=(const Item& other);
             bool operator==(const char* name)  const;
