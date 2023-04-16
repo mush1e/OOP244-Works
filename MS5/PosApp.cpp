@@ -133,7 +133,7 @@ namespace sdds {
         cout << "2- Add item" << endl;
         cout << "3- Remove item" << endl;
         cout << "4- Stock item" << endl;
-        cout << "5- Point of Sale" << endl;
+        cout << "5- POS" << endl;
         cout << "0- exit program" << endl;
         cout << "> ";
         return *this;
