@@ -32,9 +32,10 @@ namespace sdds {
 
         public:
             PosApp(const char *fileName = nullptr);
-            // PosApp(const PosApp& rep)   = delete; 
+            PosApp(const PosApp& rep)   = delete; 
             void sortItems();
-		    // PosApp& operator=(const PosApp& rep) = delete; 
+		    PosApp& operator=(const PosApp& rep) = delete; 
+            ~PosApp();
 
             std::ostream& addItem(std::ostream&    ostr = std::cout);
             std::ostream& removeItem(std::ostream& ostr = std::cout);

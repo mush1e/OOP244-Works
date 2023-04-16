@@ -70,6 +70,7 @@ namespace sdds {
             m_Iptr[i] = iptr;
             m_Iptr[i]->load(ifstr);
             m_Iptr[i]->displayType(POS_LIST);
+            delete iptr;
         }
         this->m_nptr = i-1;
         return ostr;
@@ -101,7 +102,7 @@ namespace sdds {
         }
         ostr << "-----^--------^--------------------^-------^---^----^---------^-------------^"  << endl
              << setw(48) << right << "Total Asset: $  |" << setw(14) << fixed << setprecision(2) << netAssets 
-             << "|" << endl << "-----------------------------------------------^--------------^";
+             << "|" << endl << "-----------------------------------------------^--------------^" << endl;
         
         return ostr;
     }
