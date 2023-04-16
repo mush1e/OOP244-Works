@@ -71,10 +71,10 @@ namespace sdds {
             ifstr >> ch >> delim;
             Item* iptr;
             (ch == 'P') ? iptr = new Perishable : iptr = new NonPerishable;
-            m_Iptr[i] = iptr;
+            *m_Iptr[i] = * iptr;
             m_Iptr[i]->load(ifstr);
             m_Iptr[i]->displayType(POS_LIST);
-            // delete iptr; 
+            delete iptr; 
         }
         this->m_nptr = i-1;
         return ostr;
@@ -82,7 +82,7 @@ namespace sdds {
 
     ostream& PosApp::saveRecs(ostream& ostr) {
         ostr << ">>>> Saving Data........................"
-        "....................................."  << endl;
+        ".....................................";
         ofstream ofstr(this->m_fileName);
         for(int i = 0; i < this->m_nptr && ofstr << *this->m_Iptr[i] << endl; i++);
         return ostr;
