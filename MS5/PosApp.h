@@ -1,5 +1,5 @@
 /*
-Final Project Milestone 1
+Final Project Milestone 5
 Module: POS
 Filename: PosApp.h
 Version 1.0
