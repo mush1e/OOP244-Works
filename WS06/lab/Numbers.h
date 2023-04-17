@@ -1,12 +1,11 @@
 #ifndef SDDS_NUMBERS_H_
 #define SDDS_NUMBERS_H_
-#include <iostream>
 
 namespace sdds {
     class Numbers {
         double* m_collection{};
         char m_fileName[255]{};
-        size_t m_arrSize{};
+        int m_arrSize{};
         bool m_isOriginal{};
         bool m_hasAppend{};
         

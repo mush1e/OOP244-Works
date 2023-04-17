@@ -1,5 +1,9 @@
 #include <fstream>
 #include <iostream>
+#include <iostream>
+#include <iomanip>
+#include <cstring>
+
 #include "Numbers.h"
 using namespace std;
 namespace sdds {
