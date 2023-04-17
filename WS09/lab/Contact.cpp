@@ -53,19 +53,21 @@ namespace sdds {
         Person::read(istr);
         char addressBuffer[255]     {};
         char cityBuffer[255]        {};
-        char provinceBuffer[255]    {};
+        char provinceBuffer[3]    {};
         char postalCodeBuffer[255]  {};
         istr.getline(addressBuffer  , 255, ',');
         istr.getline(cityBuffer     , 255, ',');
-        istr.getline(provinceBuffer , 255, ',');
+        istr.getline(provinceBuffer , 3, ',');
         istr >> postalCodeBuffer;
         if ( !istr.fail() ) {
             delAlloCopy(this->m_address, addressBuffer);
             delAlloCopy(this->m_city,    cityBuffer);
             strCpy(this->m_province,     provinceBuffer);
             strCpy(this->m_postalCode,   postalCodeBuffer);
+            istr.clear();
+            istr.ignore(1000, '\n');
         }
-        else    ~*this;
+        else    ~*this; 
         return istr;
     }
 
