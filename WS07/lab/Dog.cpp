@@ -30,7 +30,7 @@ namespace sdds {
     Dog& Dog::operator=(const Dog& other) {
         if(this != &other) {
             Pet::operator=(other);
-            this->addCharge((m_create + m_base) * 2);
+            this->addCharge((m_create) * 2);
             this->m_numberOfWalks = other;
         }
         return *this;
