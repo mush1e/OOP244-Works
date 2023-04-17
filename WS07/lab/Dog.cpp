@@ -16,6 +16,7 @@ namespace sdds {
             healthDelta += 0.10 * (getFeeds()  - 2);
             healthDelta += 0.10 * (getGrooms() - 1);
             healthDelta += 0.20 * (m_numberOfWalks  - 2);
+            m_numberOfWalks = 0;
             this->applyHealthDelta(healthDelta);
         }
         Pet::operator++(0); 
