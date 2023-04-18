@@ -1,0 +1,22 @@
+/*
+*****************************************************************************
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 18 Apr 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+During the workshop, I learned a lot of new things. Firstly, I learned how to open and close a file, read data from it, and write data to it. 
+Secondly, I learned how to write a sort function to sort a sequence of numbers from lower to higher. 
+Thirdly, I practiced writing a copy constructor and copy assignment. 
+Finally, I learned how to use a temp variable in a function, such as istream& operator>>(istream& istr, Numbers& right), so that I can use operator+= overloaded function.
+
+One of the difficult parts of the workshop for me was finding a memory leak. 
+I am not very familiar with deallocating memory, so it was challenging for me to locate the problem. 
+Matrix notified me that the leak occurred in the load() function, so I carefully checked this function many times. 
+I also checked other places where memory leaks are easy to occur in case of unpredictable errors. 
+To better understand the program, I set a breakpoint and tracked the process carefully. 
+After some time, I finally found where the problem was: I should have deleted the m_collection before calling setEmpty() if noOfLines is not equal to count. 
+I wasn't aware of this point, and it caused a memory leak. However, after adding (delete[] _collection), the error disappeared.
