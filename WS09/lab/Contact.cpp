@@ -88,7 +88,6 @@ namespace sdds {
             for(int i = 0; i < 3 && ostr << this->m_postalCode[i]; i++);
             ostr << " ";
             for(int i = 3; i < 6 && ostr << this->m_postalCode[i]; i++);
-            ostr << endl;
         }
         return ostr;
     }
