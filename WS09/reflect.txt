@@ -1,0 +1,20 @@
+/*
+*****************************************************************************
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 18 Apr 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+During the workshop, I learned several things. Firstly, I learned how to use "m_name && m_name[0]" to check if m_name exists 
+and if it is not empty. This is because m_name is a pointer and stores the name dynamically. Secondly, I learned that if I 
+have initialized all of the member data in the header file, I don't need to write anything in the constructor. Thirdly, I learned 
+that I can use std::istream to read data from a file instead of writing another std::ifstream function.
+
+However, I also found some aspects of the workshop challenging. Specifically, I was confused about whether I needed to include 
+"Person::operator~();" in the function Contact::operator~(). Initially, I thought it wasn't necessary because the destructor of 
+the parent class Person would be called automatically when the program ended. However, I later discovered that there was a memory 
+leak if I didn't add it. Upon reviewing my code, I realized that *this in both the child and parent classes would call Contact::operator(), 
+but no one would call Person::operator~(). As a result, I had to add "Person::operator~();" to fix the issue.

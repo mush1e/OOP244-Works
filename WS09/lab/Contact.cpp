@@ -78,17 +78,22 @@ namespace sdds {
         return istr;
     }
 
-    ostream& Contact::write(ostream& ostr) const {
-        if(*this) {
-            Person::write(ostr) 
-                 << endl << m_address 
-                 << endl << m_city 
-                 << " " <<  m_province
-                 << endl;
-            for(int i = 0; i < 3 && ostr << this->m_postalCode[i]; i++);
-            ostr << " ";
-            for(int i = 3; i < 6 && ostr << this->m_postalCode[i]; i++);
-        }
-        return ostr;
-    }
+	std::ostream& Contact::write(std::ostream& ostr) const
+	{
+		if (*this) {
+			Person::write(ostr);
+			ostr << endl;
+			ostr << m_address << endl;
+			ostr << m_city << " " << m_province << endl;
+			for (int i = 0; i < 3; i++) {
+				ostr << m_postalCode[i];
+			}
+			ostr << " ";
+			for (int i = 3; i < 6; i++) {
+				ostr << m_postalCode[i];
+			}
+			ostr << endl;
+		}
+		return ostr;
+	}
 }
