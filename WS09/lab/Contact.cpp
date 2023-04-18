@@ -60,17 +60,15 @@ namespace sdds {
     istream& Contact::read(istream& istr) {
         *this ? *this = Contact() : *this;
         Person::read(istr);
-        char addressBuffer[255]     {};
-        char cityBuffer[255]        {};
         char provinceBuffer[3]    {};
-        char postalCodeBuffer[255]  {};
-        istr.getline(addressBuffer  , 255, ',');
-        istr.getline(cityBuffer     , 255, ',');
-        istr.getline(provinceBuffer , 3, ',');
-        istr >> postalCodeBuffer;
+        char postalCodeBuffer[7]  {};
+        this->m_address = dynRead(istr   , ',');
+        this->m_city    = dynRead(istr   , ',');
+        istr.getline(provinceBuffer , 3  , ',');
+        istr.getline(postalCodeBuffer, 7, '\n');
+
+
         if ( !istr.fail() ) {
-            delAlloCopy(this->m_address, addressBuffer);
-            delAlloCopy(this->m_city,    cityBuffer);
             strCpy(this->m_province,     provinceBuffer);
             strCpy(this->m_postalCode,   postalCodeBuffer);
         }
@@ -78,22 +76,18 @@ namespace sdds {
         return istr;
     }
 
-	std::ostream& Contact::write(std::ostream& ostr) const
-	{
-		if (*this) {
-			Person::write(ostr);
-			ostr << endl;
-			ostr << m_address << endl;
-			ostr << m_city << " " << m_province << endl;
-			for (int i = 0; i < 3; i++) {
-				ostr << m_postalCode[i];
-			}
-			ostr << " ";
-			for (int i = 3; i < 6; i++) {
-				ostr << m_postalCode[i];
-			}
-			ostr << endl;
-		}
-		return ostr;
-	}
+    ostream& Contact::write(ostream& ostr) const {
+        if(*this) {
+            Person::write(ostr) 
+                 << endl << m_address 
+                 << endl << m_city 
+                 << " " <<  m_province
+                 << endl;
+            for(int i = 0; i < 3 && ostr << this->m_postalCode[i]; i++);
+            ostr << " ";
+            for(int i = 3; i < 6 && ostr << this->m_postalCode[i]; i++);
+            ostr << endl;
+        }
+        return ostr;
+    }
 }
