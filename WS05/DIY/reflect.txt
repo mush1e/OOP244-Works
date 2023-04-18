@@ -1,0 +1,22 @@
+/*
+*****************************************************************************
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 18 Apr 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+From the workshop, I was able to learn a lot about operator overloading. I had the opportunity to practice and become better at overloading different types of operator functions, 
+including Type conversion, Unary and Binary operator functions, and how to properly call them in another function. 
+One of the essential things I learned is the format for calling a bool function, where bool(*this) checks if the bus is in service, 
+returns true if it is and false if it's not.
+
+I also gained a better understanding of the keyword "const" and how to set parameter values by default. 
+The workshop also helped me differentiate between helper functions and member functions and how to write them correctly. 
+Additionally, I learned about the importance of using "using namespace std;" in header files if I use ostream & istream.
+
+During the workshop, I encountered some challenges with some subtle mistakes that could cause errors in my code. 
+For example, I mistakenly set default values twice (in the header file and cpp file). However, 
+I learned from my mistakes and corrected them to prevent such errors in the future.
