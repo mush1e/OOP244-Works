@@ -112,7 +112,7 @@ namespace sdds {
     Numbers& Numbers::operator+=(const double value) {
         if(this->m_collection != nullptr) {
             double *temp = new double[m_arrSize + 1];
-            for (unsigned int i = 0; i < m_arrSize; i++) 
+            for (int i = 0; i < m_arrSize; i++) 
                 temp[i] = m_collection[i];
             temp[m_arrSize++] = value;
             delete[] m_collection;
@@ -161,7 +161,6 @@ namespace sdds {
 
    void Numbers::sort(double* nums, unsigned int size) {
       unsigned int i, j;
-      double temp;
       for(i = size - 1; size && i > 0; i--) 
          for(j = 0; j < i; j++) 
             if(nums[j] > nums[j + 1]) 
