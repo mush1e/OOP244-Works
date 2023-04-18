@@ -1,0 +1,24 @@
+/*
+*****************************************************************************
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 18 Apr 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+During the workshop, I learned several things. Firstly, I learned how to correctly override parent class functions in 
+child classes. It's important to ensure that the prototypes of the functions are the same. Secondly, I learned how to
+ write a class that can act as an interface for its child and grandchild classes. To do this, all functions' prototypes i
+ n the header file, including the destructor, should be virtual, and all other member functions should be set to =0. 
+ Lastly, I learned about the importance of the "const" keyword. I encountered an error when I forgot to add "const" 
+ in the child display function, even though I had added it in the parent display function. This caused issues with compilation, 
+ but I was able to resolve it by correctly overriding the functions.
+
+The most difficult part of the workshop for me was overloading the >> and << operators as helper functions. I initially used load() 
+and play() as instructions, but it didn't work because the child classes hadn't overridden the functions yet. This caused a lot of 
+confusion, and I had to try several different approaches to resolve the error. Eventually, I realized that I should ignore the error 
+for the time being, as it would disappear automatically once I had overridden the virtual functions in the child classes.
+
+
+
