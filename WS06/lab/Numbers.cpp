@@ -114,6 +114,7 @@ namespace sdds {
             double *temp = new double[m_arrSize + 1];
             for (int i = 0; i < m_arrSize; i++) 
                 temp[i] = m_collection[i];
+            
             temp[m_arrSize++] = value;
             delete[] m_collection;
             m_collection = temp;
@@ -127,6 +128,7 @@ namespace sdds {
         else {
             ostr << fixed << showpoint << setprecision(2);
             !this->m_isOriginal && ostr << "Copy of numbers.txt";
+	    ostr << this->m_fileName << endl;
             for(int i = 0; i < this->m_arrSize; i++) {
                 ostr << this->m_collection[i];
                 ostr << ((i < this->m_arrSize-1) ? ", " : "\n");
