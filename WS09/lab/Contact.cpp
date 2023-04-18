@@ -73,8 +73,6 @@ namespace sdds {
             delAlloCopy(this->m_city,    cityBuffer);
             strCpy(this->m_province,     provinceBuffer);
             strCpy(this->m_postalCode,   postalCodeBuffer);
-            istr.clear();
-            istr.ignore(1000, '\n');
         }
         else    ~*this; 
         return istr;
