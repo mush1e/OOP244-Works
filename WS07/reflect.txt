@@ -1,0 +1,23 @@
+/*
+*****************************************************************************
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 18 Apr 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+During the workshop, I gained some valuable insights about inheritance in C++. Firstly, I learned about the "protected" keyword 
+that can be used before parent functions to restrict their access to only the child classes. Secondly, I learned how to use parent 
+class's public and protected functions in child classes. Thirdly, I learned how to write the constructor function in child classes and 
+the importance of writing the initialization before the curly braces.
+
+However, I encountered some difficulties during the workshop. Initially, I didn't realize that the initialization of the Pet class 
+should be written before the curly braces. This led to a weird output, but I later corrected it by writing the initialization properly. 
+Additionally, in the operator= function of Pet.cpp, I was confused about the statement "when closing customers are to be charged based 
+on the fee table." Consequently, I set m_totalAmount = p.m_noOfAmount, which was incorrect. The correct approach was to set 
+m_totalAmount = 0 and add the fee when cloning fish and dog.
+
+Overall, the workshop was a great learning experience for me as I was able to enhance my knowledge and skills in C++ inheritance. 
+Although I faced some difficulties, I was able to overcome them with the help of the instructor and my peers.
