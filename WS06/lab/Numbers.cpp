@@ -106,8 +106,7 @@ namespace sdds {
             for (unsigned int i = 0; i < m_arrSize; i++) 
                 temp[i] = m_collection[i];
             
-            temp[m_arrSize] = value;
-            m_arrSize++;
+            temp[m_arrSize++] = value;
             delete[] m_collection;
             m_collection = temp;
             m_hasAppend = true;
