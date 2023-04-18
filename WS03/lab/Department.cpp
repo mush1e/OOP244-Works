@@ -110,4 +110,9 @@ namespace sdds {
             }
     }
 
+    Department::~Department() {
+        delete[] m_projects;
+        delete[] m_name;
+    }
+
 }

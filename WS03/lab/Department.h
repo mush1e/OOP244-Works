@@ -18,6 +18,7 @@ namespace sdds {
         double m_budget = 15345.99;
         
         public:
+            ~Department();
             void updateName(const char* newname);
             void updateBudget(double change);
             bool addProject(Project& newproject);
