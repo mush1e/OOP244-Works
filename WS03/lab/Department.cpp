@@ -21,27 +21,28 @@ namespace sdds {
     }
 
     bool Department::addProject(Project& newproject) {
-        bool retVal = false;
-        Project* temp_projects = new Project[m_noProjects+1];
-
-        if(newproject.m_cost < remainingBudget()) {
-
-            if(m_noProjects < 1) 
-                temp_projects[0] = newproject;
-
-            else {
-                for(int i = 0; i < m_noProjects; i++) 
-                    temp_projects[i] = m_projects[i];
-                temp_projects[m_noProjects] = newproject;
+        bool success   {};
+        if ((totalexpenses() + newproject.m_cost) <= m_budget)
+        {
+            if (m_noProjects == 0) {
+                m_projects = new Project[1];                     
+                *m_projects = newproject;
+                m_noProjects++;
             }
+            else {
+                Project* tempProjects = new Project[++m_noProjects];
+                for (int i = 0; i < m_noProjects-1; i++)
+                    tempProjects[i] = m_projects[i];
+                tempProjects[m_noProjects-1] = newproject;
 
-            delete[] m_projects;
-            m_projects = temp_projects;
-            m_noProjects ++;
+                delete[] m_projects;
+                m_projects = nullptr;
+                m_projects = tempProjects;   
+            }
+            success =  true;
         }
-
-        retVal = m_budget < totalexpenses() ? false : true;
-        return retVal;
+        else   success = false;
+        return success;
     }
 
     void Department::createDepartment(const char *newname,
@@ -81,15 +82,11 @@ namespace sdds {
         return m_budget - totalexpenses();
     }
 
-    void Department::clearDepartment()
-    {
-        if (m_projects != nullptr)
-        {
+    void Department::clearDepartment() {
             delete[] m_projects;
             delete[] m_name;
             m_name = nullptr;
             m_projects = nullptr;
-        }
     }
     //fully provided for students to display details of a project
     void display(const Project& project) {

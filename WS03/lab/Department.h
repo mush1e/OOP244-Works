@@ -12,9 +12,9 @@ namespace sdds {
 	//class Department does here
 	
 	class Department {
-        char* m_name;
-        Project* m_projects;
-        int m_noProjects;
+        char* m_name        {};
+        Project* m_projects {};
+        int m_noProjects    {};
         double m_budget = 15345.99;
         
         public:
