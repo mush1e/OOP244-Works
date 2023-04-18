@@ -18,10 +18,10 @@ I have done all the coding by myself and only copied the code that my professor 
 namespace sdds {
     class Store {
 
-        char m_sName[MAX_SNAME];  
-        int m_noOfToys; 
-        int m_addToys; 
-        Toys m_toy[MAX_NUMTOYS];
+        char m_sName[MAX_SNAME]  {};  
+        int m_noOfToys           {}; 
+        int m_addToys            {}; 
+        Toys m_toy[MAX_NUMTOYS]  {};
         
         public:
             void setStore(const char* sName, int no);

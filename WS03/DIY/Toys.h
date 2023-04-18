@@ -15,11 +15,11 @@ I have done all the coding by myself and only copied the code that my professor 
 namespace sdds {
 
     class Toys {
-        char m_tname[MAX_TNAME];
-        int m_sku; 
-        double m_price;
-        int m_age;
-        bool m_onSale;
+        char m_tname[MAX_TNAME] {};
+        int m_sku               {}; 
+        double m_price          {};
+        int m_age               {};
+        bool m_onSale           {};
 
         public:
             bool m_Validity = false;
