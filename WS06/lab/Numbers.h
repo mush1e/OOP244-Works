@@ -3,11 +3,11 @@
 
 namespace sdds {
     class Numbers {
-        double* m_collection{};
-        char m_fileName[255]{};
-        int m_arrSize{};
-        bool m_isOriginal{};
-        bool m_hasAppend{};
+        double* m_collection    {};
+        char m_fileName[255]    {};
+        int m_arrSize           {};
+        bool m_isOriginal       {};
+        bool m_hasAppend        {};
         
         unsigned int countLines(const char* filename);
         void sort(double* collectionPtr, unsigned int size);

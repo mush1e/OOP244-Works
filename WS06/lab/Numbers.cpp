@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iostream>
-#include <iostream>
 #include <iomanip>
 #include <cstring>
 
@@ -103,11 +102,15 @@ namespace sdds {
 
     Numbers& Numbers::operator+=(const double value) {
         if(this->m_collection != nullptr) {
-            double* temp = new double[this->m_arrSize+1];
-            memcpy(temp, this->m_collection, sizeof(double) * (this->m_arrSize));
-            temp[this->m_arrSize++] = value;
-            delete[] this->m_collection;
-            this->m_collection = temp;
+            double *temp = new double[m_arrSize + 1];
+            for (unsigned int i = 0; i < m_arrSize; i++) 
+                temp[i] = m_collection[i];
+            
+            temp[m_arrSize] = value;
+            m_arrSize++;
+            delete[] m_collection;
+            m_collection = temp;
+            m_hasAppend = true;
         }
         return *this;
     }
@@ -117,7 +120,6 @@ namespace sdds {
         else {
             ostr << fixed << showpoint << setprecision(2);
             !this->m_isOriginal && ostr << "Copy of numbers.txt";
-            ostr << this->m_fileName << endl;
             for(int i = 0; i < this->m_arrSize; i++) {
                 ostr << this->m_collection[i];
                 ostr << ((i < this->m_arrSize-1) ? ", " : "\n");
@@ -143,6 +145,7 @@ namespace sdds {
         return istr;
     }
 
+
     Numbers::~Numbers() {
         save();
         delete[] m_collection;
@@ -152,18 +155,13 @@ namespace sdds {
    void Numbers::sort(double* nums, unsigned int size) {
       unsigned int i, j;
       double temp;
-      for(i = size - 1; size && i > 0; i--) {
-         for(j = 0; j < i; j++) {
-            if(nums[j] > nums[j + 1]) {
-               temp = nums[j];
-               nums[j] = nums[j + 1];
-               nums[j + 1] = temp;
-            }
-         }
-      }
+      for(i = size - 1; size && i > 0; i--) 
+         for(j = 0; j < i; j++) 
+            if(nums[j] > nums[j + 1]) 
+                swap(nums[j], nums[j+1]);
    }
 
-   unsigned int Numbers::countLines(const char* filename) { /**/
+   unsigned int Numbers::countLines(const char* filename) {
       unsigned int lines = 0u;
       ifstream nums(filename);
       while(nums) {
