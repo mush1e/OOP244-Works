@@ -8,12 +8,12 @@ using namespace std;
 namespace sdds {
 
     void Department::updateName(const char* newname) {
+        delete[] m_name;
         if (newname != nullptr && newname[0] != '\0'){
             m_name = new char[strlen(newname) + 1];
             strcpy(m_name, newname);
         } 
-        else 
-            delete[] m_name;
+
     }
 
     void Department::updateBudget(double change) {
@@ -22,8 +22,7 @@ namespace sdds {
 
     bool Department::addProject(Project& newproject) {
         bool retVal = false;
-        Project* temp_projects = nullptr;
-        temp_projects = new Project[m_noProjects+1];
+        Project* temp_projects = new Project[m_noProjects+1];
 
         if(newproject.m_cost < remainingBudget()) {
 
@@ -33,11 +32,12 @@ namespace sdds {
             else {
                 for(int i = 0; i < m_noProjects; i++) 
                     temp_projects[i] = m_projects[i];
-                temp_projects[m_noProjects++] = newproject;
+                temp_projects[m_noProjects] = newproject;
             }
 
             delete[] m_projects;
             m_projects = temp_projects;
+            m_noProjects ++;
         }
 
         retVal = m_budget < totalexpenses() ? false : true;
