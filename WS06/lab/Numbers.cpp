@@ -1,3 +1,12 @@
+/*
+*****************************************************************************
+Full Name  : Mustafa Siddiqui
+Student ID#: 117434225
+Email      : msiddiqui48@myseneca.ca
+Date of completion    : 18 Apr 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -105,7 +114,6 @@ namespace sdds {
             double *temp = new double[m_arrSize + 1];
             for (unsigned int i = 0; i < m_arrSize; i++) 
                 temp[i] = m_collection[i];
-            
             temp[m_arrSize++] = value;
             delete[] m_collection;
             m_collection = temp;
